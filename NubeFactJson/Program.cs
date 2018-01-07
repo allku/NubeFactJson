@@ -125,7 +125,7 @@ namespace NubeFactJson
             invoice.operacion = "generar_comprobante";
             invoice.tipo_de_comprobante = 1;
             invoice.serie = "F001";
-            invoice.numero = 100;
+            invoice.numero = 118;
             invoice.sunat_transaction = 1;
             invoice.cliente_tipo_de_documento = 6;
             invoice.cliente_numero_de_documento = "20600695771";
@@ -261,6 +261,9 @@ namespace NubeFactJson
                 Console.WriteLine("CODIGO QR: " + leer_respuesta.cadena_para_codigo_qr);
                 Console.WriteLine("CODIGO HASH: " + leer_respuesta.codigo_hash);
                 Console.WriteLine("CODIGO DE BARRAS: " + leer_respuesta.codigo_de_barras);
+                Console.WriteLine("Enlace PDF: " + leer_respuesta.enlace_del_pdf);
+                Console.WriteLine("Enlace XML: " + leer_respuesta.enlace_del_xml);
+                Console.WriteLine("Enlace CDR: " + leer_respuesta.enlace_del_cdr);
                 Console.ReadKey();
             }
             else
@@ -268,6 +271,17 @@ namespace NubeFactJson
                 Console.WriteLine("ERRORES: " + leer_respuesta.errors);
                 Console.ReadKey();
             }
+            String tipo = Convert.ToString(leer_respuesta.tipo);
+            String serie = Convert.ToString(leer_respuesta.serie);
+            String numero = Convert.ToString(leer_respuesta.numero);
+            Respuesta respuesta = new Respuesta();
+            respuesta = (Respuesta)leer_respuesta;
+
+            var grabarRespuesta = new GrabarRespuesta(tipo,
+                                                      serie,
+                                                      numero,
+                                                      leer_respuesta);
+            grabarRespuesta.borrarGrabar();
         }
     }
 

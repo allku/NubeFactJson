@@ -19,5 +19,8 @@ namespace NubeFactJson
         public string cadena_para_codigo_qr { get; set; }
         public string codigo_hash { get; set; }
         public string codigo_de_barras { get; set; }
+        public string enlace_del_pdf { get; set; }
+        public string enlace_del_xml { get; set; }
+        public string enlace_del_cdr { get; set; }
     }
 }
