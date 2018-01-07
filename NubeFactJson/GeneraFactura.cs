@@ -27,9 +27,11 @@ namespace NubeFactJson
             this.invoice = new Invoice();
         }
 
-        public void genera() {
+        public Invoice genera() {
             loadFactura();
             loadFacturaDetalle();
+
+            return this.invoice;
         }
 
         void loadFactura() {
@@ -85,7 +87,7 @@ namespace NubeFactJson
             try
             {
                 conSqlServer.Open();
-                SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas " +
+                SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_detalle " +
                                                    "where tipo_comprobante=@tipoComprobante " +
                                                    "and serie=@serie " +
                                                    "and numero=@numero",
@@ -101,19 +103,27 @@ namespace NubeFactJson
                     items.Add(new Items()
                     {
                         unidad_de_medida = "NIU",
-                        codigo = "001",
-                        descripcion = "DETALLE DEL PRODUCTO",
-                        cantidad = 1,
-                        valor_unitario = 500,
-                        precio_unitario = 590,
+                        //codigo = "001",  // codigo interno del producto
+                        codigo = sqlRead["codigo_principal"].ToString(),
+                        //descripcion = "DETALLE DEL PRODUCTO", // descripcion del producto
+                        descripcion = sqlRead["descripcion"].ToString(),
+                        //cantidad = 1,
+                        cantidad = double.Parse(sqlRead["cantidad"].ToString()),
+                        //valor_unitario = 500,   // valor sin iva
+                        valor_unitario = double.Parse(sqlRead["valor_unitario1"].ToString()),   // valor sin iva 
+                        //precio_unitario = 590,  //  valor_unitario+(valor_unitario(18%))
+                        precio_unitario = double.Parse(sqlRead["precio_unitario"].ToString()),
                         descuento = "",
-                        subtotal = 500,
-                        tipo_de_igv = 1,
-                        igv = 90,
-                        total = 590,
+                        //subtotal = 500,/// (valor_unitario- descuento)*cantidad
+                        subtotal = double.Parse(sqlRead["subtotal1"].ToString()),
+                        tipo_de_igv = 1,    // es una constante IGV =1
+                        //igv = 90,           // (cantidad*valor_unitario)18%  TOTAL DE IGV DE LA LINEA() 
+                        igv = double.Parse(sqlRead["igv_linea1"].ToString()),
+                        //total = 590,      //total de la linea   precio_unitario+(precio_unitario)18% 
+                        total = double.Parse(sqlRead["total_linea1"].ToString()),
                         anticipo_regularizacion = false,
-                        anticipo_comprobante_serie = "",
-                        anticipo_comprobante_numero = ""
+                        anticipo_comprobante_serie = "",  // opcionales
+                        anticipo_comprobante_numero = ""  // opcionales 
                     });
                 }
 

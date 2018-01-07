@@ -75,7 +75,6 @@ namespace NubeFactJson
                 sqlCmdInsert.Parameters.AddWithValue("@enlace_del_xml", this.respuesta.enlace_del_xml);
                 sqlCmdInsert.Parameters.AddWithValue("@enlace_del_cdr", this.respuesta.enlace_del_cdr);
 
-
                 sqlCmdInsert.ExecuteNonQuery();
 
 
