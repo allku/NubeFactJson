@@ -28,8 +28,6 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Text;
 using System.Data.SqlClient;
-using System.Data;
-
 
 namespace NubeFactJson
 {
