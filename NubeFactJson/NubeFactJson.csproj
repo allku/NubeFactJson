@@ -49,15 +49,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneraFactura.cs" />
-    <Compile Include="Invoice.cs" />
-    <Compile Include="Respuesta.cs" />
     <Compile Include="Connection.cs" />
-    <Compile Include="Items.cs" />
     <Compile Include="GrabarRespuesta.cs" />
+    <Compile Include="Comprobante\Invoice.cs" />
+    <Compile Include="Comprobante\Items.cs" />
+    <Compile Include="Comprobante\Respuesta.cs" />
+    <Compile Include="Enviar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Comprobante\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

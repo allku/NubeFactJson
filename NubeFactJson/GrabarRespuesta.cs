@@ -24,7 +24,7 @@ namespace NubeFactJson
             {
                 conSqlServer.Open();
 
-                SqlCommand sqlCmdDelete = new SqlCommand("delete peru_respuesta " +
+                SqlCommand sqlCmdDelete = new SqlCommand("delete peru_respuestas " +
                                                          "where tipo = @tipo " +
                                                          "and serie = @serie " +
                                                          "and numero = @numero", conSqlServer);
@@ -35,7 +35,7 @@ namespace NubeFactJson
 
                 sqlCmdDelete.ExecuteNonQuery();
 
-                SqlCommand sqlCmdInsert = new SqlCommand("INSERT INTO peru_respuesta " +
+                SqlCommand sqlCmdInsert = new SqlCommand("INSERT INTO peru_respuestas " +
                                                          "(tipo, serie, numero, enlace, aceptada_por_sunat, sunat_description, sunat_note, sunat_responsecode, sunat_soap_error, pdf_zip_base64, xml_zip_base64, cdr_zip_base64, cadena_para_codigo_qr, codigo_hash, enlace_del_pdf, enlace_del_xml, enlace_del_cdr) " +
                                                          "VALUES(" +
                                                          "@tipo, " +
@@ -92,7 +92,7 @@ namespace NubeFactJson
             try
             {
                 conSqlServer.Open();
-                SqlCommand sqlCmd = new SqlCommand("select count(*) as count from peru_respuesta " +
+                SqlCommand sqlCmd = new SqlCommand("select count(*) as count from peru_respuestas " +
                                                    "where tipo = @tipo " +
                                                    "and serie = @serie " +
                                                    "and numero = @numero", conSqlServer);

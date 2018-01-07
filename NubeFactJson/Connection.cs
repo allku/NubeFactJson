@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System;
 
 namespace NubeFactJson
 {
@@ -11,6 +12,26 @@ namespace NubeFactJson
                     "NubeFactJson.Properties.Settings.BDQualityv"]
                        .ConnectionString);
             return conSqlServer;
+        }
+
+        void probarSqlServerConnection()
+        {
+
+            SqlConnection conSqlServer = new Connection().initSqlServer();
+
+            Console.WriteLine(System.Configuration.ConfigurationManager.ConnectionStrings[
+                "NubeFactJson.Properties.Settings.BDQualityv"].ConnectionString);
+
+            try
+            {
+                conSqlServer.Open();
+                Console.WriteLine("Conexión Sql Server correcta");
+                conSqlServer.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error de Conexión " + ex.ToString());
+            }
         }
     }
 }
