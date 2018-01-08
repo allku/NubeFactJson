@@ -1,7 +1,7 @@
 USE [BDQualityv]
 GO
 
-/****** Object:  View [dbo].[fe_facturamaestro1]    Script Date: 06/01/2018 22:32:37 ******/
+/****** Object:  View [dbo].[fe_facturamaestro1]    Script Date: 07/01/2018 21:48:06 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -26,7 +26,5 @@ group by numero,Documento_cli,razonSocial
 
 
 
-
 GO
-
 

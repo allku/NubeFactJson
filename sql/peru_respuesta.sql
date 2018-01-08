@@ -11,7 +11,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[peru_respuesta](
+CREATE TABLE [dbo].[peru_respuestas](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[tipo] [varchar](100) NULL,
 	[serie] [varchar](100) NULL,

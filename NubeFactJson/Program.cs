@@ -1,4 +1,6 @@
-﻿namespace NubeFactJson
+﻿using System;
+
+namespace NubeFactJson
 {
     public class NubeFacT
     {

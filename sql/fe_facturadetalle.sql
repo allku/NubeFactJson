@@ -1,7 +1,7 @@
 USE [BDQualityv]
 GO
 
-/****** Object:  View [dbo].[fe_facturadetalle]    Script Date: 06/01/2018 22:32:43 ******/
+/****** Object:  View [dbo].[fe_facturadetalle]    Script Date: 07/01/2018 21:48:37 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -44,7 +44,5 @@ AND (d.TipoDocumento IN (
 
 
 
-
 GO
-
 
