@@ -14,13 +14,13 @@ namespace NubeFactJson
             return conSqlServer;
         }
 
-        void probarSqlServerConnection()
+        public void probarSqlServerConnection()
         {
 
             SqlConnection conSqlServer = new Connection().initSqlServer();
 
-            Console.WriteLine(System.Configuration.ConfigurationManager.ConnectionStrings[
-                "NubeFactJson.Properties.Settings.BDQualityv"].ConnectionString);
+            //Console.WriteLine(System.Configuration.ConfigurationManager.ConnectionStrings[
+                //"NubeFactJson.Properties.Settings.BDQualityv"].ConnectionString);
 
             try
             {

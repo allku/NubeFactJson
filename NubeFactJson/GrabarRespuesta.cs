@@ -20,6 +20,11 @@ namespace NubeFactJson
 
         public void borrarGrabar () {
             SqlConnection conSqlServer = new Connection().initSqlServer();
+
+            if(aceptado()) {
+                return;
+            }
+
             try
             {
                 conSqlServer.Open();
@@ -88,7 +93,7 @@ namespace NubeFactJson
             }
         }
 
-        Boolean existe() {
+        Boolean aceptado() {
             SqlConnection conSqlServer = new Connection().initSqlServer();
             int count = 0;
             try
@@ -97,7 +102,8 @@ namespace NubeFactJson
                 SqlCommand sqlCmd = new SqlCommand("select count(*) as count from peru_respuestas " +
                                                    "where tipo = @tipo " +
                                                    "and serie = @serie " +
-                                                   "and numero = @numero", conSqlServer);
+                                                   "and numero = @numero " +
+                                                   "and aceptada_por_sunat = '1'", conSqlServer);
                 
                 sqlCmd.Parameters.AddWithValue("@tipoComprobante", this.tipoComprobante);
                 sqlCmd.Parameters.AddWithValue("@serie", this.serie);

@@ -57,6 +57,7 @@
     <Compile Include="Enviar.cs" />
     <Compile Include="ReporteFactura.cs" />
     <Compile Include="Componente\ConsoleTable.cs" />
+    <Compile Include="NubeFact.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -139,9 +139,9 @@ namespace NubeFactJson
             Respuesta respuesta = new Respuesta();
             respuesta = (Respuesta)leer_respuesta;
 
-            var grabarRespuesta = new GrabarRespuesta(tipo,
-                                                      serie,
-                                                      numero,
+            var grabarRespuesta = new GrabarRespuesta(invoice.tipo_de_comprobante.ToString(),
+                                                      invoice.serie,
+                                                      invoice.numero.ToString(),
                                                       leer_respuesta);
             grabarRespuesta.borrarGrabar();
         }
@@ -330,10 +330,10 @@ namespace NubeFactJson
             Respuesta respuesta = new Respuesta();
             respuesta = (Respuesta)leer_respuesta;
 
-            var grabarRespuesta = new GrabarRespuesta(tipo,
-                                                      serie,
-                                                      numero,
-                                                      leer_respuesta);
+            var grabarRespuesta = new GrabarRespuesta(invoice.tipo_de_comprobante.ToString(),
+                                                        invoice.serie,
+                                                        invoice.numero.ToString(),
+                                                        leer_respuesta);
             grabarRespuesta.borrarGrabar();
         }
     }

@@ -22,7 +22,7 @@ namespace NubeFactJson
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
                                                    "where fecha = @fecha " +
-                                                   "and(estado = @estado or '2' = @estado) " +
+                                                   "and (estado = @estado or '2' = @estado) " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
                 
