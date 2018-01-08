@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using ConsoleTables;
 
 namespace NubeFactJson
 {
@@ -31,13 +32,27 @@ namespace NubeFactJson
 
                 while (sqlRead.Read())
                 {
+                    var table = new ConsoleTable("Comprobante",
+                                             "Serie",
+                                             "#",
+                                             "Estado");
+
                     var generaFactura = new GeneraFactura(sqlRead["tipo_comprobante"].ToString(),
                                                           sqlRead["serie"].ToString(),
                                                           sqlRead["numero"].ToString());
                     
                     var factura = generaFactura.genera();
                     enviarFactura.factura(factura);
+
+                    table.AddRow(sqlRead["tipo"],
+                                 sqlRead["serie"],
+                                 sqlRead["numero"],
+                                 "Enviado a NubeFact");
+
+                    table.Write();
                 }
+
+
 
                 sqlRead.Close();
                 conSqlServer.Close();

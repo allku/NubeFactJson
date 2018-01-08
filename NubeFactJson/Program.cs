@@ -2,7 +2,7 @@
 
 namespace NubeFactJson
 {
-    public class NubeFacT
+    public class Program
     {
         public static void Main()
         {
@@ -10,7 +10,9 @@ namespace NubeFactJson
             // 2 ingrese 1 no enviadas    2 enviadas  3 todas
             // 3 op 1 solo reporte    2 enviar   3 verificar
             // 4 Probar conexión
-            probarConexion();
+
+            var enviar = new Enviar();
+            enviar.ejemplo();
            
            
         }
@@ -35,7 +37,7 @@ namespace NubeFactJson
             reporteFactura.reporte(ReporteFactura.TODOS);
         }
 
-        static void enviar(string fecha)
+        static void enviarNubeFact(string fecha)
         {
             var nubeFact = new NubeFact();
             nubeFact.fecha = fecha;

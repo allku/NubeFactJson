@@ -105,7 +105,7 @@ namespace NubeFactJson
                                                    "and numero = @numero " +
                                                    "and aceptada_por_sunat = '1'", conSqlServer);
                 
-                sqlCmd.Parameters.AddWithValue("@tipoComprobante", this.tipoComprobante);
+                sqlCmd.Parameters.AddWithValue("@tipo", this.tipoComprobante);
                 sqlCmd.Parameters.AddWithValue("@serie", this.serie);
                 sqlCmd.Parameters.AddWithValue("@numero", this.numero);
 

@@ -126,12 +126,12 @@ namespace NubeFactJson
                 Console.WriteLine("Enlace PDF: " + leer_respuesta.enlace_del_pdf);
                 Console.WriteLine("Enlace XML: " + leer_respuesta.enlace_del_xml);
                 Console.WriteLine("Enlace CDR: " + leer_respuesta.enlace_del_cdr);
-                Console.ReadKey();
+
             }
             else
             {
                 Console.WriteLine("ERRORES: " + leer_respuesta.errors);
-                Console.ReadKey();
+
             }
             String tipo = Convert.ToString(leer_respuesta.tipo);
             String serie = Convert.ToString(leer_respuesta.serie);
@@ -177,8 +177,8 @@ namespace NubeFactJson
             Invoice invoice = new Invoice();
             invoice.operacion = "generar_comprobante";
             invoice.tipo_de_comprobante = 1;
-            invoice.serie = "F001";
-            invoice.numero = 126;
+            invoice.serie = "F002";
+            invoice.numero = 127;
             invoice.sunat_transaction = 1;
             invoice.cliente_tipo_de_documento = 6;
             invoice.cliente_numero_de_documento = "20600695771";
@@ -330,11 +330,11 @@ namespace NubeFactJson
             Respuesta respuesta = new Respuesta();
             respuesta = (Respuesta)leer_respuesta;
 
-            var grabarRespuesta = new GrabarRespuesta(invoice.tipo_de_comprobante.ToString(),
-                                                        invoice.serie,
-                                                        invoice.numero.ToString(),
-                                                        leer_respuesta);
-            grabarRespuesta.borrarGrabar();
+            //var grabarRespuesta = new GrabarRespuesta(invoice.tipo_de_comprobante.ToString(),
+            //                                            invoice.serie,
+            //                                            invoice.numero.ToString(),
+            //                                            leer_respuesta);
+            //grabarRespuesta.borrarGrabar();
         }
     }
 }
