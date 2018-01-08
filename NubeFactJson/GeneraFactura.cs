@@ -110,17 +110,17 @@ namespace NubeFactJson
                         //cantidad = 1,
                         cantidad = double.Parse(sqlRead["cantidad"].ToString()),
                         //valor_unitario = 500,   // valor sin iva
-                        valor_unitario = double.Parse(sqlRead["valor_unitario1"].ToString()),   // valor sin iva 
+                        valor_unitario = double.Parse(sqlRead["valor_unitario"].ToString()),   // valor sin iva 
                         //precio_unitario = 590,  //  valor_unitario+(valor_unitario(18%))
                         precio_unitario = double.Parse(sqlRead["precio_unitario"].ToString()),
                         descuento = "",
                         //subtotal = 500,/// (valor_unitario- descuento)*cantidad
-                        subtotal = double.Parse(sqlRead["subtotal1"].ToString()),
+                        subtotal = double.Parse(sqlRead["subtotal"].ToString()),
                         tipo_de_igv = 1,    // es una constante IGV =1
                         //igv = 90,           // (cantidad*valor_unitario)18%  TOTAL DE IGV DE LA LINEA() 
-                        igv = double.Parse(sqlRead["igv_linea1"].ToString()),
+                        igv = double.Parse(sqlRead["igv_linea"].ToString()),
                         //total = 590,      //total de la linea   precio_unitario+(precio_unitario)18% 
-                        total = double.Parse(sqlRead["total_linea1"].ToString()),
+                        total = double.Parse(sqlRead["total_linea"].ToString()),
                         anticipo_regularizacion = false,
                         anticipo_comprobante_serie = "",  // opcionales
                         anticipo_comprobante_numero = ""  // opcionales 

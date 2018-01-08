@@ -55,6 +55,8 @@
     <Compile Include="Comprobante\Items.cs" />
     <Compile Include="Comprobante\Respuesta.cs" />
     <Compile Include="Enviar.cs" />
+    <Compile Include="ReporteFactura.cs" />
+    <Compile Include="Componente\ConsoleTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Comprobante\" />
+    <Folder Include="Componente\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -36,7 +36,7 @@ namespace NubeFactJson
                 sqlCmdDelete.ExecuteNonQuery();
 
                 SqlCommand sqlCmdInsert = new SqlCommand("INSERT INTO peru_respuestas " +
-                                                         "(tipo, serie, numero, enlace, aceptada_por_sunat, sunat_description, sunat_note, sunat_responsecode, sunat_soap_error, pdf_zip_base64, xml_zip_base64, cdr_zip_base64, cadena_para_codigo_qr, codigo_hash, enlace_del_pdf, enlace_del_xml, enlace_del_cdr) " +
+                                                         "(tipo, serie, numero, enlace, aceptada_por_sunat, sunat_description, sunat_note, sunat_responsecode, sunat_soap_error, pdf_zip_base64, xml_zip_base64, cdr_zip_base64, cadena_para_codigo_qr, codigo_hash, enlace_del_pdf, enlace_del_xml, enlace_del_cdr, observacion) " +
                                                          "VALUES(" +
                                                          "@tipo, " +
                                                          "@serie, " +
@@ -54,7 +54,8 @@ namespace NubeFactJson
                                                          "@codigo_hash, " +
                                                          "@enlace_del_pdf, " +
                                                          "@enlace_del_xml, " +
-                                                         "@enlace_del_cdr)",
+                                                         "@enlace_del_cdr," +
+                                                         "@observacion)",
                                                          conSqlServer);
                 
                 sqlCmdInsert.Parameters.AddWithValue("@tipo", this.tipoComprobante);
@@ -74,6 +75,7 @@ namespace NubeFactJson
                 sqlCmdInsert.Parameters.AddWithValue("@enlace_del_pdf", this.respuesta.enlace_del_pdf);
                 sqlCmdInsert.Parameters.AddWithValue("@enlace_del_xml", this.respuesta.enlace_del_xml);
                 sqlCmdInsert.Parameters.AddWithValue("@enlace_del_cdr", this.respuesta.enlace_del_cdr);
+                sqlCmdInsert.Parameters.AddWithValue("@observacion", this.respuesta.errors);
 
                 sqlCmdInsert.ExecuteNonQuery();
 
