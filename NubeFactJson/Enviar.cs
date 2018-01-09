@@ -178,7 +178,7 @@ namespace NubeFactJson
             invoice.operacion = "generar_comprobante";
             invoice.tipo_de_comprobante = 1;
             invoice.serie = "F002";
-            invoice.numero = 127;
+            invoice.numero = 129;
             invoice.sunat_transaction = 1;
             invoice.cliente_tipo_de_documento = 6;
             invoice.cliente_numero_de_documento = "20600695771";

@@ -32,10 +32,10 @@ namespace NubeFactJson
 
                 while (sqlRead.Read())
                 {
-                    var table = new ConsoleTable("Comprobante",
-                                             "Serie",
-                                             "#",
-                                             "Estado");
+                    //var table = new ConsoleTable("Comprobante",
+                                             //"Serie",
+                                             //"#",
+                                             //"Estado");
 
                     var generaFactura = new GeneraFactura(sqlRead["tipo_comprobante"].ToString(),
                                                           sqlRead["serie"].ToString(),
@@ -44,12 +44,12 @@ namespace NubeFactJson
                     var factura = generaFactura.genera();
                     enviarFactura.factura(factura);
 
-                    table.AddRow(sqlRead["tipo"],
-                                 sqlRead["serie"],
-                                 sqlRead["numero"],
-                                 "Enviado a NubeFact");
+                    //table.AddRow(sqlRead["tipo"],
+                    //             sqlRead["serie"],
+                    //             sqlRead["numero"],
+                    //             "Enviado a NubeFact");
 
-                    table.Write();
+                    //table.Write();
                 }
 
 
