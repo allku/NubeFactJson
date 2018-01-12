@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using ConsoleTables;
 
 namespace NubeFactJson
 {
@@ -9,7 +8,7 @@ namespace NubeFactJson
         public String fecha { get; set; }
 
         public void enviar() {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
             {
                 Console.WriteLine("La fecha debe contener un valor");
@@ -32,24 +31,14 @@ namespace NubeFactJson
 
                 while (sqlRead.Read())
                 {
-                    //var table = new ConsoleTable("Comprobante",
-                                             //"Serie",
-                                             //"#",
-                                             //"Estado");
 
                     var generaFactura = new GeneraFactura(sqlRead["tipo_comprobante"].ToString(),
                                                           sqlRead["serie"].ToString(),
                                                           sqlRead["numero"].ToString());
                     
-                    var factura = generaFactura.genera();
+                    var factura = generaFactura.generaEnvio();
                     enviarFactura.factura(factura);
 
-                    //table.AddRow(sqlRead["tipo"],
-                    //             sqlRead["serie"],
-                    //             sqlRead["numero"],
-                    //             "Enviado a NubeFact");
-
-                    //table.Write();
                 }
 
 
@@ -59,12 +48,12 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
+                Console.WriteLine("Error al listar las facturas para enviar" + ex.ToString());
             }
         }
 
         public void verificar() {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
             {
                 Console.WriteLine("La fecha debe contener un valor");
@@ -87,39 +76,22 @@ namespace NubeFactJson
 
                 while (sqlRead.Read())
                 {
-                    var table = new ConsoleTable("Comprobante",
-                                             "Serie",
-                                             "#",
-                                             "Estado");
 
                     var generaFacturaVerificacion = new GeneraFactura(sqlRead["tipo_comprobante"].ToString(),
                                                           sqlRead["serie"].ToString(),
-                                                          sqlRead["numero"].ToString(),
-                                                          sqlRead["tipo_comprobante"].ToString());
+                                                          sqlRead["numero"].ToString());
 
-                    var factura = generaFacturaVerificacion.generaVerificacion();
+                    var factura = generaFacturaVerificacion.generaVerificar();
                     enviarFactura.facturaVerificacion(factura);
 
-                    table.AddRow(sqlRead["tipo"],
-                                 sqlRead["serie"],
-                                 sqlRead["numero"],
-                                 "Enviado a NubeFact");
-
-                    table.Write();
                 }
-                InvoiceConsulta ic = new InvoiceConsulta();
-                Console.WriteLine("OBJETO MONTADO");
-                Console.WriteLine("obj grabado:" + ic.tipo_de_comprobante.ToString());
-                Console.WriteLine("obj grabado:" + ic.serie.ToString());
-                Console.WriteLine("obj grabado:" + ic.numero.ToString());
-                //Console.WriteLine("obj grabado:" + ic.tipo_de_comprobante.ToString());
 
                 sqlRead.Close();
                 conSqlServer.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
+                Console.WriteLine("Error al listar las facturas para verificar" + ex.ToString());
             }        
         }
     }
