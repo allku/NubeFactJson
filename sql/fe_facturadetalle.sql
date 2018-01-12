@@ -9,13 +9,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-
-
-
-
-/*and d.Folio = '23374'
-and d.Folio = '143330'
-order by d.Folio desc*/
 ALTER VIEW [dbo].[fe_facturadetalle]
 AS
 SELECT     d.TipoDocumento, d.Folio numero, t.Item AS codigo_principal, i.Descripcion, 
@@ -26,23 +19,31 @@ FROM         dbo.Documento AS d INNER JOIN
                       dbo.Item AS i ON t.Empresa = i.Empresa AND t.Item = i.Item AND t.TipoItem = i.TipoItem
 WHERE     (d.Empresa = 'Activefun') 
 AND (d.TipoDocumento IN (
-'FAC PTO VTA 1',
-'FAC PTO VTA 2',
-'FAC PTO VTA 3',
-'FAC PTO VTA 4',
-'FAC PTO VTA 5',
-'FAC PTO CAFET',
-'FAC PTO CAFET 2',
-'FAC PTO SHOP',
-'FAC CUMPLEAÑOS',
-'FAC VTA SALIDA',
-'FACTURA EXPORTACION'
+'FACTURA PTO VENTA 1',
+'FACTURA PTO VENTA 2',
+'FACTURA PTO VENTA 3',
+'FACTURA PTO VENTA 4',
+'FACTURA PTO VENTA 5',
+'FACTURA PTO VENTA 6',
+'FACTURA PTO VENTA 7',
+'FACTURA CUMPLEANOS',
+'FACTURA PTO CAFET',
+'FACTURA PTO SHOP',
+
+'BOLETA PTO VENTA 1',
+'BOLETA PTO VENTA 2',
+'BOLETA PTO VENTA 3',
+'BOLETA PTO VENTA 4',
+'BOLETA PTO VENTA 5',
+'BOLETA PTO VENTA 6',
+'BOLETA PTO VENTA 7',
+'BOLETA CUMPLEAÑOS',
+'BOLETA PTO CAFET',
+'BOLETA PTO SHOP'
 )) AND (d.Estado = 'S')
-
-
-
-
-
-
 GO
+
+
+
+
 

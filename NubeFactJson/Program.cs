@@ -19,13 +19,13 @@ namespace NubeFactJson
  {
      Console.Clear(); //Limpiar la pantalla
      Console.WriteLine("\t\tFacturación Electrónica con Nubefact\n");
-     Console.ForegroundColor = ConsoleColor.Red;
-     Console.Write("[A]Probar conexión\t\n");
-     Console.Write("[B]Reporte(FAC|BOL)NO Enviadas\t\n");
-     Console.Write("[C]Reporte(FAC|BOL)Enviadas \t\n");
-     Console.Write("[D]Reporte(FAC|BOL)Todas\t\n");
-     Console.Write("[E]Enviar a Nubefact\t\n");
-     Console.Write("[F]Verificar\t\n");
+                Console.ForegroundColor = ConsoleColor.Green;
+     Console.Write("[ P ] Probar conexión\t\n");
+     Console.Write("[ N ] Reporte(FAC|BOL)NO Enviadas\t\n");
+     Console.Write("[ S ] Reporte(FAC|BOL)SI Enviadas \t\n");
+     Console.Write("[ T ] Reporte(FAC|BOL)Todas\t\n");
+     Console.Write("[ E ] Enviar a Nubefact\t\n");
+     Console.Write("[ V ] Verificar\t\n");
 
      Console.Write("[Esc]Salir\t\n\n");
      Console.ForegroundColor = ConsoleColor.White;
@@ -36,15 +36,15 @@ namespace NubeFactJson
      //métodos son acciones, las propiedades son valores
      switch (op.Key)
      {
-         case ConsoleKey.A:
-             Console.WriteLine("[A] Probar la conexión");
+         case ConsoleKey.P:
+             Console.WriteLine("[ P ] Probar la conexión");
              probarConexion();
              Console.Write("Presione una tecla para continuar...");
              Console.ReadKey();
              break;
 
-         case ConsoleKey.B:
-             Console.WriteLine("[B] Reporte (Facturas|Boletas) NO Enviadas");
+         case ConsoleKey.N:
+             Console.WriteLine("[ N ] Reporte (Facturas|Boletas) No Enviadas");
              Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
              FechaAValidar = Console.ReadLine();
              if (DateTime.TryParse(FechaAValidar, out fecha))
@@ -58,8 +58,8 @@ namespace NubeFactJson
              Console.ReadKey();
              break;
 
-         case ConsoleKey.C:
-             Console.WriteLine("[C] Reporte (Facturas|Boletas) Enviadas");
+         case ConsoleKey.S:
+             Console.WriteLine("[ S ] Reporte (Facturas|Boletas) Si Enviadas");
              Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
              FechaAValidar = Console.ReadLine();
              if (DateTime.TryParse(FechaAValidar, out fecha))
@@ -75,8 +75,8 @@ namespace NubeFactJson
              Console.ReadKey();
              break;
 
-         case ConsoleKey.D:
-             Console.WriteLine("[D] Reporte (Facturas|Boletas)Todas");
+         case ConsoleKey.T:
+             Console.WriteLine("[ T ] Reporte (Facturas|Boletas)Todas");
              Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
              FechaAValidar = Console.ReadLine();
              if (DateTime.TryParse(FechaAValidar, out fecha))

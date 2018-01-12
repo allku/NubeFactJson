@@ -6,9 +6,9 @@ namespace NubeFactJson
 {
     public class ReporteFactura
     {
-        public const string NO_ENVIADO = "0";
-        public const string ENVIADO = "1"; 
-        public const string TODOS = "2";
+        public const string NO_ENVIADO = "False";
+        public const string ENVIADO = "True"; 
+        public const string TODOS = "Todos";
         public String fecha { get; set; }
 
         public void reporte(String estado) {
@@ -22,7 +22,7 @@ namespace NubeFactJson
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
                                                    "where fecha = @fecha " +
-                                                   "and (estado = @estado or '2' = @estado) " +
+                                                   "and (estado = @estado or 'Todos' = @estado) " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
                 

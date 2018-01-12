@@ -171,6 +171,89 @@ namespace NubeFactJson
             }
         }
 
+        public void facturaVerificacion(InvoiceConsulta invoice)
+        {
+            string json = JsonConvert.SerializeObject(invoice, Formatting.Indented);
+            Console.WriteLine(json);
+            byte[] bytes = Encoding.Default.GetBytes(json);
+            string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
+
+            /// #########################################################
+            /// #### PASO 3: ENVIAR EL ARCHIVO A NUBEFACT ####
+            /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            /// # SI ESTÁS TRABAJANDO CON ARCHIVO JSON
+            /// # - Debes enviar en el HEADER de tu solicitud la siguiente lo siguiente:
+            /// # Authorization = Token token="8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69"
+            /// # Content-Type = application/json
+            /// # - Adjuntar en el CUERPO o BODY el archivo JSON o TXT
+            /// # SI ESTÁS TRABAJANDO CON ARCHIVO TXT
+            /// # - Debes enviar en el HEADER de tu solicitud la siguiente lo siguiente:
+            /// # Authorization = Token token="8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69"
+            /// # Content-Type = text/plain
+            /// # - Adjuntar en el CUERPO o BODY el archivo JSON o TXT
+            /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            string json_de_respuesta = SendJson(ruta, json_en_utf_8, token);
+            Console.WriteLine("fin de envio");
+            dynamic r = JsonConvert.DeserializeObject<Respuesta>(json_de_respuesta);
+            string r2 = JsonConvert.SerializeObject(r, Formatting.Indented);
+            dynamic json_r_in = JsonConvert.DeserializeObject<Respuesta>(r2);
+
+            ///#########################################################
+            ///#### PASO 4: LEER RESPUESTA DE NUBEFACT ####
+            ///+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            ///# Recibirás una respuesta de NUBEFACT inmediatamente lo cual se debe leer, verificando que no haya errores.
+            ///# Debes guardar en la base de datos la respuesta que te devolveremos.
+            ///# Escríbenos a soporte@nubefact.com o llámanos al teléfono: 01 468 3535 (opción 2) o celular (WhatsApp) 955 598762
+            ///# Puedes imprimir el PDF que nosotros generamos como también generar tu propia representación impresa previa coordinación con nosotros.
+            ///# La impresión del documento seguirá haciéndose desde tu sistema. Enviaremos el documento por email a tu cliente si así lo indicas en el archivo JSON o TXT.
+            ///+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            dynamic leer_respuesta = JsonConvert.DeserializeObject<Respuesta>(json_de_respuesta);
+            if (leer_respuesta.errors == null)
+            {
+                Console.WriteLine(json_r_in);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("TIPO: " + leer_respuesta.tipo);
+                Console.WriteLine("SERIE: " + leer_respuesta.serie);
+                Console.WriteLine("NUMERO: " + leer_respuesta.numero);
+                Console.WriteLine("URL: " + leer_respuesta.url);
+                Console.WriteLine("ACEPTADA_POR_SUNAT: " + leer_respuesta.aceptada_por_sunat);
+                Console.WriteLine("DESCRIPCION SUNAT: " + leer_respuesta.sunat_description);
+                Console.WriteLine("NOTA SUNAT: " + leer_respuesta.sunat_note);
+                Console.WriteLine("CODIGO RESPUESTA SUNAT: " + leer_respuesta.sunat_responsecode);
+                Console.WriteLine("SUNAT ERROR SOAP: " + leer_respuesta.sunat_soap_error);
+                Console.WriteLine("PDF EN BASE64: " + leer_respuesta.pdf_zip_base64);
+                Console.WriteLine("XML EN BASE64: " + leer_respuesta.xml_zip_base64);
+                Console.WriteLine("CDR EN BASE64: " + leer_respuesta.cdr_zip_base64);
+                Console.WriteLine("CODIGO QR: " + leer_respuesta.cadena_para_codigo_qr);
+                Console.WriteLine("CODIGO HASH: " + leer_respuesta.codigo_hash);
+                Console.WriteLine("CODIGO DE BARRAS: " + leer_respuesta.codigo_de_barras);
+                Console.WriteLine("Enlace PDF: " + leer_respuesta.enlace_del_pdf);
+                Console.WriteLine("Enlace XML: " + leer_respuesta.enlace_del_xml);
+                Console.WriteLine("Enlace CDR: " + leer_respuesta.enlace_del_cdr);
+
+            }
+            else
+            {
+                Console.WriteLine("ERRORES: " + leer_respuesta.errors);
+
+            }
+            String tipo = Convert.ToString(leer_respuesta.tipo);
+            String serie = Convert.ToString(leer_respuesta.serie);
+            String numero = Convert.ToString(leer_respuesta.numero);
+            Respuesta respuesta = new Respuesta();
+            respuesta = (Respuesta)leer_respuesta;
+
+            var grabarRespuesta = new GrabarRespuesta(invoice.tipo_de_comprobante.ToString(),
+                                                      invoice.serie,
+                                                      invoice.numero.ToString(),
+                                                      leer_respuesta);
+            grabarRespuesta.borrarGrabar();
+        }
+
+
         public void ejemplo()
         {
             ///CREAMOS EL JSON

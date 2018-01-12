@@ -62,4 +62,11 @@ namespace NubeFactJson
         public string guia_serie_numero { get; set; }
     }
 
+    public class InvoiceConsulta
+    {
+        public string operacion { get; set; }
+        public int tipo_de_comprobante { get; set; }
+        public string serie { get; set; }
+        public int numero { get; set; }
+    }
 }

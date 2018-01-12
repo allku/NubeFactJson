@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 /****** Script for SelectTopNRows command from SSMS  ******/
-ALTER VIEW [dbo].[v_peru_facturas_reporte]
+alter VIEW [dbo].[v_peru_facturas_reporte]
 AS
 SELECT f.tipo_comprobante
       ,f.tipo
@@ -24,7 +24,7 @@ SELECT f.tipo_comprobante
 	  ,isnull((select r.aceptada_por_sunat from peru_respuestas r
 	  where r.serie = f.serie
 	  and r.numero = f.numero 
-	  and r.tipo = f.tipo_comprobante),'0') as estado
+	  and r.tipo = f.tipo_comprobante),'False') as estado
 	  ,isnull((select r.observacion from peru_respuestas r
 	  where r.serie = f.serie
 	  and r.numero = f.numero 

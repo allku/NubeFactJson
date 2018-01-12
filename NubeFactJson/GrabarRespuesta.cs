@@ -62,25 +62,49 @@ namespace NubeFactJson
                                                          "@enlace_del_cdr," +
                                                          "@observacion)",
                                                          conSqlServer);
-                
-                sqlCmdInsert.Parameters.AddWithValue("@tipo", this.tipoComprobante);
-                sqlCmdInsert.Parameters.AddWithValue("@serie", this.serie);
-                sqlCmdInsert.Parameters.AddWithValue("@numero", this.numero);
-                sqlCmdInsert.Parameters.AddWithValue("@enlace", this.respuesta.url);
-                sqlCmdInsert.Parameters.AddWithValue("@aceptada_por_sunat", this.respuesta.aceptada_por_sunat);
-                sqlCmdInsert.Parameters.AddWithValue("@sunat_description", this.respuesta.sunat_description);
-                sqlCmdInsert.Parameters.AddWithValue("@sunat_note", this.respuesta.sunat_note);
-                sqlCmdInsert.Parameters.AddWithValue("@sunat_responsecode", this.respuesta.sunat_responsecode);
-                sqlCmdInsert.Parameters.AddWithValue("@sunat_soap_error", this.respuesta.sunat_soap_error);
-                sqlCmdInsert.Parameters.AddWithValue("@pdf_zip_base64", this.respuesta.pdf_zip_base64);
-                sqlCmdInsert.Parameters.AddWithValue("@xml_zip_base64", this.respuesta.xml_zip_base64);
-                sqlCmdInsert.Parameters.AddWithValue("@cdr_zip_base64", this.respuesta.cdr_zip_base64);
-                sqlCmdInsert.Parameters.AddWithValue("@cadena_para_codigo_qr", this.respuesta.cadena_para_codigo_qr);
-                sqlCmdInsert.Parameters.AddWithValue("@codigo_hash", this.respuesta.codigo_hash);
-                sqlCmdInsert.Parameters.AddWithValue("@enlace_del_pdf", this.respuesta.enlace_del_pdf);
-                sqlCmdInsert.Parameters.AddWithValue("@enlace_del_xml", this.respuesta.enlace_del_xml);
-                sqlCmdInsert.Parameters.AddWithValue("@enlace_del_cdr", this.respuesta.enlace_del_cdr);
-                sqlCmdInsert.Parameters.AddWithValue("@observacion", this.respuesta.errors);
+                if (this.respuesta.errors == null)
+                {
+                    Console.WriteLine("Guardando la respuesta");
+                    sqlCmdInsert.Parameters.AddWithValue("@tipo", this.tipoComprobante.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@serie", this.serie.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@numero", this.numero.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace", this.respuesta.url ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@aceptada_por_sunat", this.respuesta.aceptada_por_sunat.ToString() ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_description", this.respuesta.sunat_description ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_note", this.respuesta.sunat_note ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_responsecode", this.respuesta.sunat_responsecode ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_soap_error", this.respuesta.sunat_soap_error ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@pdf_zip_base64", this.respuesta.pdf_zip_base64 ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@xml_zip_base64", this.respuesta.xml_zip_base64 ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@cdr_zip_base64", this.respuesta.cdr_zip_base64 ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@cadena_para_codigo_qr", this.respuesta.cadena_para_codigo_qr ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@codigo_hash", this.respuesta.codigo_hash ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_pdf", this.respuesta.enlace_del_pdf ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_xml", this.respuesta.enlace_del_xml ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_cdr", this.respuesta.enlace_del_cdr ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@observacion", "");
+                }
+                else {
+                    Console.WriteLine("Guardando el error");
+                    sqlCmdInsert.Parameters.AddWithValue("@tipo", this.tipoComprobante.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@serie", this.serie.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@numero", this.numero.ToString());
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@aceptada_por_sunat", this.respuesta.aceptada_por_sunat.ToString() ?? "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_description", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_note", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_responsecode", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@sunat_soap_error", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@pdf_zip_base64", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@xml_zip_base64", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@cdr_zip_base64", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@cadena_para_codigo_qr", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@codigo_hash", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_pdf", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_xml", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@enlace_del_cdr", "");
+                    sqlCmdInsert.Parameters.AddWithValue("@observacion", this.respuesta.errors ?? "");
+                }
 
                 sqlCmdInsert.ExecuteNonQuery();
 
@@ -103,7 +127,7 @@ namespace NubeFactJson
                                                    "where tipo = @tipo " +
                                                    "and serie = @serie " +
                                                    "and numero = @numero " +
-                                                   "and aceptada_por_sunat = '1'", conSqlServer);
+                                                   "and aceptada_por_sunat = 'True'", conSqlServer);
                 
                 sqlCmd.Parameters.AddWithValue("@tipo", this.tipoComprobante);
                 sqlCmd.Parameters.AddWithValue("@serie", this.serie);

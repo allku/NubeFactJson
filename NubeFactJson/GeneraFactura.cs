@@ -11,6 +11,7 @@ namespace NubeFactJson
         String serie { get; set; }
         String numero { get; set; }
         Invoice invoice;
+        InvoiceConsulta invoiceConsulta;
 
         public GeneraFactura(string tipoComprobante, string serie, string numero)
         {
@@ -19,6 +20,15 @@ namespace NubeFactJson
             this.numero = numero;
             this.invoice = new Invoice();
         }
+
+        public GeneraFactura(string tipoComprobante1, string serie, string numero, string tipoComprobante2)
+        {
+            this.tipoComprobante = tipoComprobante;
+            this.serie = serie;
+            this.numero = numero;
+            this.invoiceConsulta = new InvoiceConsulta();
+        }
+
         public GeneraFactura()
         {
             this.tipoComprobante = "";
@@ -32,6 +42,48 @@ namespace NubeFactJson
             loadFacturaDetalle();
 
             return this.invoice;
+        }
+
+        public InvoiceConsulta generaVerificacion()
+        {
+            loadFacturaVerificacion();
+            return this.invoiceConsulta;
+        }
+
+        void loadFacturaVerificacion()
+        {
+            SqlConnection conSqlServer = new Connection().initSqlServer();
+            try
+            {
+                conSqlServer.Open();
+                SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas " +
+                                                   "where tipo_comprobante=@tipoComprobante " +
+                                                   "and serie=@serie " +
+                                                   "and numero=@numero",
+                                                   conSqlServer);
+                sqlCmd.Parameters.AddWithValue("@tipoComprobante", this.tipoComprobante);
+                sqlCmd.Parameters.AddWithValue("@serie", this.serie);
+                sqlCmd.Parameters.AddWithValue("@numero", this.numero);
+
+                SqlDataReader sqlRead = sqlCmd.ExecuteReader();
+
+                while (sqlRead.Read())
+                {
+                    this.invoiceConsulta.operacion = "consultar_comprobante";
+                    this.invoiceConsulta.tipo_de_comprobante = int.Parse(sqlRead["tipo_comprobante"].ToString());
+                    this.invoiceConsulta.serie = sqlRead["serie"].ToString();
+                    this.invoiceConsulta.numero = int.Parse(sqlRead["numero"].ToString());
+                    //this.invoice.sunat_transaction = 1;
+                    //this.invoice.cliente_tipo_de_documento = 6;
+                }
+
+                sqlRead.Close();
+                conSqlServer.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en Carga de Verificación de Facturas" + ex.ToString());
+            }
         }
 
         void loadFactura() {
