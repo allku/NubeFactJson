@@ -53,10 +53,10 @@ namespace NubeFactJson
         /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /// # RUTA para enviar documentos
-        public const string ruta = "https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0";
+        public string ruta;
 
         /// # TOKEN para enviar documentos
-        public const string token = "d0a80b88cde446d092025465bdb4673e103a0d881ca6479ebbab10664dbc5677";
+        public string token;
 
         /// #########################################################
         /// #### PASO 2: GENERAR EL ARCHIVO PARA ENVIAR A NUBEFACT ####
@@ -64,6 +64,14 @@ namespace NubeFactJson
         /// # - MANUAL para archivo JSON en el link: https://goo.gl/WHMmSb
         /// # - MANUAL para archivo TXT en el link: https://goo.gl/Lz7hAq
         /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public Enviar()
+        {
+            this.ruta = System.Configuration.ConfigurationManager.ConnectionStrings[
+                "NubeFactJson.Properties.Settings.Ruta"].ConnectionString;
+            this.token = System.Configuration.ConfigurationManager.ConnectionStrings[
+                "NubeFactJson.Properties.Settings.Token"].ConnectionString;
+        }
 
         public void factura(Invoice invoice)
         {            

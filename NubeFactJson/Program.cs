@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace NubeFactJson
 {
@@ -24,6 +25,7 @@ namespace NubeFactJson
                 Console.Write("[ V ] Verificar\t\n");
                 Console.Write("\n");
                 Console.Write("[ P ] Probar conexión\t\n");
+                Console.Write("[ C ] Ver configuración NubeFact\t\n");
                 Console.Write("\n");
                 Console.Write("[ Esc ]Salir\t\n\n");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -119,6 +121,12 @@ namespace NubeFactJson
                          Console.ReadKey();
                          break;
 
+                     case ConsoleKey.C:
+                        Console.WriteLine("[ C ] Ver configuración NubeFact");
+                        Configuracion();
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
                      case ConsoleKey.Escape:
                          Console.WriteLine("Saliendo ... ");
@@ -167,6 +175,13 @@ namespace NubeFactJson
             var c = new Connection();
             c.initSqlServer();
             c.probarSqlServerConnection();
+        }
+
+        static void Configuracion()
+        {
+            var enviar = new Enviar();
+            Console.WriteLine(enviar.ruta); 
+            Console.WriteLine(enviar.token); 
         }
     }
 }

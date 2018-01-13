@@ -24,7 +24,6 @@ namespace NubeFactJson
                 //"NubeFactJson.Properties.Settings.BDQualityv"].ConnectionString);
             var table = new ConsoleTable("Conexión Sql Server");
 
-
             try
             {
                 conSqlServer.Open();
