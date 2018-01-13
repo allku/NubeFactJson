@@ -27,7 +27,7 @@ namespace NubeFactJson
                 Console.Write("[ P ] Probar conexión\t\n");
                 Console.Write("[ C ] Ver configuración NubeFact\t\n");
                 Console.Write("\n");
-                Console.Write("[ Esc ]Salir\t\n\n");
+                Console.Write("[ Esc ] Salir\t\n\n");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Seleccione opcion...");
                 op = Console.ReadKey(true);//Que no muestre la tecla señalada
