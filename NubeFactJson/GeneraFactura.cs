@@ -60,7 +60,7 @@ namespace NubeFactJson
                     this.invoice.serie = sqlRead["serie"].ToString();
                     this.invoice.numero = int.Parse(sqlRead["numero"].ToString());
                     this.invoice.sunat_transaction = 1;
-                    this.invoice.cliente_tipo_de_documento = 6;
+                    this.invoice.cliente_tipo_de_documento = int.Parse(sqlRead["tipo_documento_cliente"].ToString());;
                     this.invoice.cliente_numero_de_documento = sqlRead["numero_documento"].ToString();
                     this.invoice.cliente_denominacion = sqlRead["denominacion"].ToString();
                     this.invoice.cliente_direccion = sqlRead["direccion"].ToString();

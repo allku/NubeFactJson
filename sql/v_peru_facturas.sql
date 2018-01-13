@@ -12,10 +12,11 @@ GO
 
 alter VIEW [dbo].[v_peru_facturas]
 AS
-SELECT   '1' as tipo_comprobante,
+SELECT   case when SUBSTRING(dbo.FUN_PUNTO(f.tipo_documento), 1, 1) = 'F' then '1' else '2' end as tipo_comprobante,
 		   f.tipo_documento as tipo,
 		   dbo.FUN_PUNTO(f.tipo_documento) as serie,
            f.numero as numero,
+		   '6' as tipo_documento_cliente,
            f.DOCUMENTO_CLI AS numero_documento,       
            ltrim(f.razonSocial) AS denominacion,
            f.Direccion AS direccion,
