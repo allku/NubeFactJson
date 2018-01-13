@@ -111,7 +111,7 @@ namespace NubeFactJson
                          FechaAValidar = Console.ReadLine();
                          if (DateTime.TryParse(FechaAValidar, out fecha))
                          {
-                             verificar(FechaAValidar);
+                             verificarNubeFact(FechaAValidar);
                          }
                          else
                          {
@@ -163,7 +163,7 @@ namespace NubeFactJson
             nubeFact.enviar();
         }
 
-        static void verificar(string fecha)
+        static void verificarNubeFact(string fecha)
         {
             var nubeFact = new NubeFact();
             nubeFact.fecha = fecha;

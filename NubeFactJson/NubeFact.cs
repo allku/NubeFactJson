@@ -64,7 +64,7 @@ namespace NubeFactJson
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
                                                    "where fecha = @fecha " +
-                                                   "and estado = 'False' " +
+                                                   "and estado = 'Todos' " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
