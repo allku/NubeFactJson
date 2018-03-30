@@ -15,7 +15,9 @@ namespace NubeFactJson
              {
                 Console.Clear(); //Limpiar la pantalla
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\t\tFacturación Electrónica con Nubefact\n");
+                Console.WriteLine("\t\tFacturación Electrónica con Nubefact");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\t\t\t\tv.1.0.3\n");
                 Console.ForegroundColor = ConsoleColor.Green;
 
                 Console.Write("[ N ] Reporte( Factura | Boleta ) NO Enviadas\t\n");

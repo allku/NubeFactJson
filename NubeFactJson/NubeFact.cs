@@ -64,11 +64,12 @@ namespace NubeFactJson
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
                                                    "where fecha = @fecha " +
-                                                   "and estado = 'Todos' " +
+                                                   "and estado = @estado " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
                 sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
+                sqlCmd.Parameters.AddWithValue("@estado", ReporteFactura.NO_ENVIADO);
 
                 SqlDataReader sqlRead = sqlCmd.ExecuteReader();
 
