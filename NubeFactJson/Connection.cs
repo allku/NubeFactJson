@@ -37,5 +37,21 @@ namespace NubeFactJson
 
             table.Write();
         }
+
+        public Boolean probarSqlServerConnectionWinForm()
+        {
+            SqlConnection conSqlServer = new Connection().initSqlServer();
+            
+            try
+            {
+                conSqlServer.Open();                
+                conSqlServer.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

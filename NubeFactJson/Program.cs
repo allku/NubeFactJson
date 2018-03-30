@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace NubeFactJson
 {
     public class Program
     {
+        [STAThread]
         public static void Main()
         {
-            MenuConsole();        
-        }
+            //Menú Consola
+            //MenuConsole();        
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Principal());
+        
+    }
 
         static void MenuConsole ()
         {
