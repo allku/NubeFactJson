@@ -7,12 +7,14 @@ namespace NubeFactJson
     {
         public static void Main()
         {
-            //var enviar = new Enviar();
-            //enviar.ejemplo();
+            MenuConsole();        
+        }
 
-             ConsoleKeyInfo op;
-             do
-             {
+        static void MenuConsole ()
+        {
+            ConsoleKeyInfo op;
+            do
+            {
                 Console.Clear(); //Limpiar la pantalla
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\t\tFacturación Electrónica con Nubefact");
@@ -35,107 +37,109 @@ namespace NubeFactJson
                 op = Console.ReadKey(true);//Que no muestre la tecla señalada
                 DateTime fecha;
                 String FechaAValidar = null;
-                 //métodos son acciones, las propiedades son valores
+                //métodos son acciones, las propiedades son valores
                 switch (op.Key)
                 {
-                     case ConsoleKey.P:
-                         Console.WriteLine("[ P ] Probar la conexión");
-                         probarConexion();
-                         Console.Write("Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.P:
+                        Console.WriteLine("[ P ] Probar la conexión");
+                        probarConexion();
+                        Console.Write("Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.N:
-                         Console.WriteLine("[ N ] Reporte (Facturas|Boletas) No Enviadas");
-                         Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
-                         FechaAValidar = Console.ReadLine();
-                         if (DateTime.TryParse(FechaAValidar, out fecha))
-                         {   
-                             reporteNoEnviadas(FechaAValidar);
-                         }else {
-                             Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
-                         }
-                         Console.Write(" Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.N:
+                        Console.WriteLine("[ N ] Reporte (Facturas|Boletas) No Enviadas");
+                        Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
+                        FechaAValidar = Console.ReadLine();
+                        if (DateTime.TryParse(FechaAValidar, out fecha))
+                        {
+                            reporteNoEnviadas(FechaAValidar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
+                        }
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.S:
-                         Console.WriteLine("[ S ] Reporte (Facturas|Boletas) Si Enviadas");
-                         Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
-                         FechaAValidar = Console.ReadLine();
-                         if (DateTime.TryParse(FechaAValidar, out fecha))
-                         {
-                             reporteEnviadas(FechaAValidar);
-                         }
-                         else
-                         {
-                             Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
-                         }
-                         Console.Write(" Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.S:
+                        Console.WriteLine("[ S ] Reporte (Facturas|Boletas) Si Enviadas");
+                        Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
+                        FechaAValidar = Console.ReadLine();
+                        if (DateTime.TryParse(FechaAValidar, out fecha))
+                        {
+                            reporteEnviadas(FechaAValidar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
+                        }
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.T:
-                         Console.WriteLine("[ T ] Reporte (Facturas|Boletas)Todas");
-                         Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
-                         FechaAValidar = Console.ReadLine();
-                         if (DateTime.TryParse(FechaAValidar, out fecha))
-                         {
-                             reporteTodas(FechaAValidar);
-                         }
-                         else
-                         {
-                             Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
-                         }
-                         Console.Write(" Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.T:
+                        Console.WriteLine("[ T ] Reporte (Facturas|Boletas)Todas");
+                        Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
+                        FechaAValidar = Console.ReadLine();
+                        if (DateTime.TryParse(FechaAValidar, out fecha))
+                        {
+                            reporteTodas(FechaAValidar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
+                        }
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.E:
-                         Console.WriteLine("[ E ] Enviar a Nubefact");
-                         Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
-                         FechaAValidar = Console.ReadLine();
-                         if (DateTime.TryParse(FechaAValidar, out fecha))
-                         {
-                             enviarNubeFact(FechaAValidar);                         
-                         }
-                         else
-                         {
-                             Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
-                         }
-                         Console.Write(" Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.E:
+                        Console.WriteLine("[ E ] Enviar a Nubefact");
+                        Console.WriteLine(" Ingrese una fecha(dd-mm-yyyy):");
+                        FechaAValidar = Console.ReadLine();
+                        if (DateTime.TryParse(FechaAValidar, out fecha))
+                        {
+                            enviarNubeFact(FechaAValidar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
+                        }
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.V:
-                         Console.WriteLine("[ V ] Verificar");
-                         Console.WriteLine("Ingrese una fecha(dd-mm-yyyy):");
-                         FechaAValidar = Console.ReadLine();
-                         if (DateTime.TryParse(FechaAValidar, out fecha))
-                         {
-                             verificarNubeFact(FechaAValidar);
-                         }
-                         else
-                         {
-                             Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
-                         }
-                         Console.Write(" Presione una tecla para continuar...");
-                         Console.ReadKey();
-                         break;
+                    case ConsoleKey.V:
+                        Console.WriteLine("[ V ] Verificar");
+                        Console.WriteLine("Ingrese una fecha(dd-mm-yyyy):");
+                        FechaAValidar = Console.ReadLine();
+                        if (DateTime.TryParse(FechaAValidar, out fecha))
+                        {
+                            verificarNubeFact(FechaAValidar);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La fecha no cumple con el FORMATO(dd-mm-yyyy):");
+                        }
+                        Console.Write(" Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        break;
 
-                     case ConsoleKey.C:
+                    case ConsoleKey.C:
                         Console.WriteLine("[ C ] Ver configuración NubeFact");
                         Configuracion();
                         Console.Write(" Presione una tecla para continuar...");
                         Console.ReadKey();
                         break;
 
-                     case ConsoleKey.Escape:
-                         Console.WriteLine("Saliendo ... ");
+                    case ConsoleKey.Escape:
+                        Console.WriteLine("Saliendo ... ");
 
-                         break;
+                        break;
                 }
-             } while (op.Key != ConsoleKey.Escape);           
+            } while (op.Key != ConsoleKey.Escape);
         }
 
         static void reporteNoEnviadas(string fecha) {
