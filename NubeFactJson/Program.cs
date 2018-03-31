@@ -17,9 +17,8 @@ namespace NubeFactJson
             Application.Run(new Principal());
         
     }
-
-        static void MenuConsole ()
-        {
+    static void MenuConsole ()
+    {
             ConsoleKeyInfo op;
             do
             {
