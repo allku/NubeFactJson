@@ -6,6 +6,7 @@ namespace NubeFactJson
     public class NubeFact
     {
         public String fecha { get; set; }
+
         public string enviar() {
             var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
@@ -48,6 +49,7 @@ namespace NubeFactJson
             }
             return "";
         }
+
         public string verificar() {
             var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
