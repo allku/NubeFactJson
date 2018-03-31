@@ -211,6 +211,7 @@
             this.cmdEnviar.TabIndex = 7;
             this.cmdEnviar.Text = "&Enviar";
             this.cmdEnviar.UseVisualStyleBackColor = true;
+            this.cmdEnviar.Click += new System.EventHandler(this.cmdEnviar_Click);
             // 
             // cmdVerificar
             // 
@@ -222,6 +223,7 @@
             this.cmdVerificar.TabIndex = 8;
             this.cmdVerificar.Text = "&Verificar";
             this.cmdVerificar.UseVisualStyleBackColor = true;
+            this.cmdVerificar.Click += new System.EventHandler(this.cmdVerificar_Click);
             // 
             // dateTimePicker1
             // 

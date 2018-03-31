@@ -82,5 +82,15 @@ namespace NubeFactJson
         {
             this.Close();
         }
+
+        private void cmdEnviar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdVerificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
