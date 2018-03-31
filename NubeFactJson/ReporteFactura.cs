@@ -66,5 +66,61 @@ namespace NubeFactJson
                 Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
             }
         }
+
+        public string ReporteWinForms(String estado) {
+            SqlConnection conSqlServer = new Connection().initSqlServer();
+            if (fecha == null) {
+                return "La fecha debe contener un valor";
+            }
+            try
+            {
+                conSqlServer.Open();
+                SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
+                                                   "where fecha = @fecha " +
+                                                   "and (estado = @estado or 'Todos' = @estado) " +
+                                                   "order by serie, numero asc",
+                                                   conSqlServer);
+                
+                sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
+                sqlCmd.Parameters.AddWithValue("@estado", estado);
+
+                SqlDataReader sqlRead = sqlCmd.ExecuteReader();
+
+                var table = new ConsoleTable("Comprobante", 
+                                             "Serie", 
+                                             "#", 
+                                             //"Documento", 
+                                             //"Denominación",
+                                             "Subtotal",
+                                             "IGV",
+                                             "Total",
+                                             "Estado", 
+                                             "Observación");
+
+                while (sqlRead.Read())
+                {
+                    table.AddRow(sqlRead["tipo"], 
+                                 sqlRead["serie"],
+                                 sqlRead["numero"],
+                                 //sqlRead["numero_documento"],
+                                 //sqlRead["denominacion"],
+                                 sqlRead["total_gravada"],
+                                 sqlRead["total_igv"],
+                                 sqlRead["total"],
+                                 sqlRead["estado"],
+                                 sqlRead["observacion"]);
+                }
+
+                table.Write();
+
+                sqlRead.Close();
+                conSqlServer.Close();
+            }
+            catch (Exception ex)
+            {
+                return "Error en el reporte de  facturas" + ex.ToString();
+            }
+            return "";
+        }
     }
 }

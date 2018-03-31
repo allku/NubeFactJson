@@ -174,14 +174,20 @@ namespace NubeFactJson
         {
             var nubeFact = new NubeFact();
             nubeFact.fecha = fecha;
-            nubeFact.enviar();
+            string mensaje = nubeFact.enviar();
+            if (!mensaje.Equals("")) {
+                Console.WriteLine(mensaje);
+            }
         }
 
         static void verificarNubeFact(string fecha)
         {
             var nubeFact = new NubeFact();
             nubeFact.fecha = fecha;
-            nubeFact.verificar();
+            string mensaje = nubeFact.verificar();
+            if (!mensaje.Equals("")) {
+                Console.WriteLine(mensaje);
+            }
         }
 
         static void probarConexion()

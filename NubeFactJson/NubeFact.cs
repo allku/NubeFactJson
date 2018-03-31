@@ -6,13 +6,11 @@ namespace NubeFactJson
     public class NubeFact
     {
         public String fecha { get; set; }
-
-        public void enviar() {
+        public string enviar() {
             var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
             {
-                Console.WriteLine("La fecha debe contener un valor");
-                return;
+                return "La fecha debe contener un valor";
             }
             try
             {
@@ -41,23 +39,20 @@ namespace NubeFactJson
 
                 }
 
-
-
                 sqlRead.Close();
                 conSqlServer.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al listar las facturas para enviar" + ex.ToString());
+                return "Error al enviar las facturas para enviar " + ex.ToString();
             }
+            return "";
         }
-
-        public void verificar() {
+        public string verificar() {
             var conSqlServer = new Connection().initSqlServer();
             if (fecha == null)
             {
-                Console.WriteLine("La fecha debe contener un valor");
-                return;
+                return "La fecha debe contener un valor";
             }
             try
             {
@@ -77,7 +72,6 @@ namespace NubeFactJson
 
                 while (sqlRead.Read())
                 {
-
                     var generaFacturaVerificacion = new GeneraFactura(sqlRead["tipo_comprobante"].ToString(),
                                                           sqlRead["serie"].ToString(),
                                                           sqlRead["numero"].ToString());
@@ -92,8 +86,9 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al listar las facturas para verificar" + ex.ToString());
+                return "Error al listar las facturas para verificar" + ex.ToString();
             }        
+            return "";
         }
     }
 }
