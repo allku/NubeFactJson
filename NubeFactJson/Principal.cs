@@ -19,42 +19,45 @@ namespace NubeFactJson
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            DateTime Fecha;
-
-            if (DateTime.TryParse(txtFechaInicial.Text, out Fecha))
+            lblEncontrados.Text = "Buscando ...";
+            Cursor.Current = Cursors.WaitCursor;
+            if (radioTodas.Checked)
             {
-                ReporteTodas(txtFechaInicial.Text);
+                ReporteTodas(txtFechaInicial.Value);
             }
-            else
+            else if (radioNoEnviadas.Checked)
             {
-                MessageBox.Show("El formato de fecha debe se: dd-mm-yyyy",
-                               "Formato de Fecha",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                ReporteNoEnviadas(txtFechaInicial.Value);
             }
+            else if (radioSiEnviadas.Checked)
+            {
+                ReporteEnviadas(txtFechaInicial.Value);
+            }
+            Cursor.Current = Cursors.Default;
+            lblEncontrados.Text = "Encontrados: " + (dataGridViewReporte.RowCount - 1);
         }
 
-        private void ReporteTodas(string fecha)
+        private void ReporteTodas(DateTime fecha)
         {
             var reporteFactura = new ReporteFactura();
-            reporteFactura.fecha = fecha;
-            var dataTable = reporteFactura.ReporteWinForms(ReporteFactura.TODOS);
+            reporteFactura.Fecha = fecha;
+            var dataTable = reporteFactura.Reporte(ReporteFactura.TODOS);
             dataGridViewReporte.DataSource = dataTable;
         }
 
-        private void ReporteNoEnviadas(string fecha)
+        private void ReporteNoEnviadas(DateTime fecha)
         {
             var reporteFactura = new ReporteFactura();
-            reporteFactura.fecha = fecha;
-            var dataTable = reporteFactura.ReporteWinForms(ReporteFactura.NO_ENVIADO);
+            reporteFactura.Fecha = fecha;
+            var dataTable = reporteFactura.Reporte(ReporteFactura.NO_ENVIADO);
             dataGridViewReporte.DataSource = dataTable;
         }
 
-        private void ReporteEnviadas(string fecha)
+        private void ReporteEnviadas(DateTime fecha)
         {
             var reporteFactura = new ReporteFactura();
-            reporteFactura.fecha = fecha;
-            var dataTable = reporteFactura.ReporteWinForms(ReporteFactura.ENVIADO);
+            reporteFactura.Fecha = fecha;
+            var dataTable = reporteFactura.Reporte(ReporteFactura.ENVIADO);
             dataGridViewReporte.DataSource = dataTable;
         }
 
@@ -62,7 +65,7 @@ namespace NubeFactJson
         {
             var c = new Connection();
             c.initSqlServer();
-            if (c.probarSqlServerConnectionWinForm())
+            if (c.probarSqlServerConnection())
             {
                 MessageBox.Show("Conexión de base de datos exitosa",
                     "Conexión",
@@ -78,6 +81,28 @@ namespace NubeFactJson
             }
         }
 
+        void EnviarNubeFact(DateTime fecha)
+        {
+            var nubeFact = new NubeFact();
+            nubeFact.Fecha = fecha;
+            string mensaje = nubeFact.Enviar();
+            if (!mensaje.Equals(""))
+            {
+                Console.WriteLine(mensaje);
+            }
+        }
+
+        void VerificarNubeFact(DateTime fecha)
+        {
+            var nubeFact = new NubeFact();
+            nubeFact.Fecha = fecha;
+            string mensaje = nubeFact.Verificar();
+            if (!mensaje.Equals(""))
+            {
+                Console.WriteLine(mensaje);
+            }
+        }
+
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -85,12 +110,16 @@ namespace NubeFactJson
 
         private void cmdEnviar_Click(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            EnviarNubeFact(txtFechaInicial.Value);
+            Cursor.Current = Cursors.Default;
         }
 
         private void cmdVerificar_Click(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            VerificarNubeFact(txtFechaInicial.Value);
+            Cursor.Current = Cursors.Default;
         }
     }
 }

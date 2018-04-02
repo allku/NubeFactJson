@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.groupBoxFechas = new System.Windows.Forms.GroupBox();
+            this.txtFechaFinal = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaIFinal = new System.Windows.Forms.Label();
+            this.radioTodas = new System.Windows.Forms.RadioButton();
+            this.radioSiEnviadas = new System.Windows.Forms.RadioButton();
+            this.radioNoEnviadas = new System.Windows.Forms.RadioButton();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.lblFechaInicial = new System.Windows.Forms.Label();
             this.dataGridViewReporte = new System.Windows.Forms.DataGridView();
@@ -37,15 +42,11 @@
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.probarConexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radioNoEnviadas = new System.Windows.Forms.RadioButton();
-            this.radioSiEnviadas = new System.Windows.Forms.RadioButton();
-            this.radioTodas = new System.Windows.Forms.RadioButton();
-            this.lblFechaIFinal = new System.Windows.Forms.Label();
-            this.txtFechaInicial = new System.Windows.Forms.DateTimePicker();
             this.groupBoxAcciones = new System.Windows.Forms.GroupBox();
-            this.cmdEnviar = new System.Windows.Forms.Button();
             this.cmdVerificar = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmdEnviar = new System.Windows.Forms.Button();
+            this.lblEncontrados = new System.Windows.Forms.Label();
+            this.txtFechaInicial = new System.Windows.Forms.DateTimePicker();
             this.groupBoxFechas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -56,8 +57,8 @@
             // 
             this.groupBoxFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxFechas.Controls.Add(this.dateTimePicker1);
             this.groupBoxFechas.Controls.Add(this.txtFechaInicial);
+            this.groupBoxFechas.Controls.Add(this.txtFechaFinal);
             this.groupBoxFechas.Controls.Add(this.lblFechaIFinal);
             this.groupBoxFechas.Controls.Add(this.radioTodas);
             this.groupBoxFechas.Controls.Add(this.radioSiEnviadas);
@@ -72,12 +73,62 @@
             this.groupBoxFechas.TabStop = false;
             this.groupBoxFechas.Text = "Rango de Fechas";
             // 
+            // txtFechaFinal
+            // 
+            this.txtFechaFinal.CustomFormat = "dd-MM-yyyy";
+            this.txtFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtFechaFinal.Location = new System.Drawing.Point(288, 22);
+            this.txtFechaFinal.Name = "txtFechaFinal";
+            this.txtFechaFinal.Size = new System.Drawing.Size(89, 23);
+            this.txtFechaFinal.TabIndex = 2;
+            // 
+            // lblFechaIFinal
+            // 
+            this.lblFechaIFinal.AutoSize = true;
+            this.lblFechaIFinal.Location = new System.Drawing.Point(197, 23);
+            this.lblFechaIFinal.Name = "lblFechaIFinal";
+            this.lblFechaIFinal.Size = new System.Drawing.Size(85, 17);
+            this.lblFechaIFinal.TabIndex = 6;
+            this.lblFechaIFinal.Text = "Fecha Final:";
+            // 
+            // radioTodas
+            // 
+            this.radioTodas.AutoSize = true;
+            this.radioTodas.Location = new System.Drawing.Point(601, 22);
+            this.radioTodas.Name = "radioTodas";
+            this.radioTodas.Size = new System.Drawing.Size(66, 21);
+            this.radioTodas.TabIndex = 5;
+            this.radioTodas.Text = "&Todas";
+            this.radioTodas.UseVisualStyleBackColor = true;
+            // 
+            // radioSiEnviadas
+            // 
+            this.radioSiEnviadas.AutoSize = true;
+            this.radioSiEnviadas.Location = new System.Drawing.Point(495, 23);
+            this.radioSiEnviadas.Name = "radioSiEnviadas";
+            this.radioSiEnviadas.Size = new System.Drawing.Size(100, 21);
+            this.radioSiEnviadas.TabIndex = 4;
+            this.radioSiEnviadas.Text = "&Si Enviadas";
+            this.radioSiEnviadas.UseVisualStyleBackColor = true;
+            // 
+            // radioNoEnviadas
+            // 
+            this.radioNoEnviadas.AutoSize = true;
+            this.radioNoEnviadas.Checked = true;
+            this.radioNoEnviadas.Location = new System.Drawing.Point(383, 23);
+            this.radioNoEnviadas.Name = "radioNoEnviadas";
+            this.radioNoEnviadas.Size = new System.Drawing.Size(106, 21);
+            this.radioNoEnviadas.TabIndex = 3;
+            this.radioNoEnviadas.TabStop = true;
+            this.radioNoEnviadas.Text = "&No Enviadas";
+            this.radioNoEnviadas.UseVisualStyleBackColor = true;
+            // 
             // cmdConsultar
             // 
             this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdConsultar.Location = new System.Drawing.Point(673, 19);
             this.cmdConsultar.Name = "cmdConsultar";
-            this.cmdConsultar.Size = new System.Drawing.Size(81, 23);
+            this.cmdConsultar.Size = new System.Drawing.Size(81, 29);
             this.cmdConsultar.TabIndex = 6;
             this.cmdConsultar.Text = "&Consultar";
             this.cmdConsultar.UseVisualStyleBackColor = true;
@@ -100,7 +151,7 @@
             this.dataGridViewReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReporte.Location = new System.Drawing.Point(12, 141);
             this.dataGridViewReporte.Name = "dataGridViewReporte";
-            this.dataGridViewReporte.Size = new System.Drawing.Size(760, 387);
+            this.dataGridViewReporte.Size = new System.Drawing.Size(760, 373);
             this.dataGridViewReporte.TabIndex = 2;
             // 
             // menuStrip
@@ -126,67 +177,16 @@
             // probarConexiónToolStripMenuItem
             // 
             this.probarConexiónToolStripMenuItem.Name = "probarConexiónToolStripMenuItem";
-            this.probarConexiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.probarConexiónToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.probarConexiónToolStripMenuItem.Text = "&Probar Conexión";
             this.probarConexiónToolStripMenuItem.Click += new System.EventHandler(this.probarConexiónToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.salirToolStripMenuItem.Text = "&Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // radioNoEnviadas
-            // 
-            this.radioNoEnviadas.AutoSize = true;
-            this.radioNoEnviadas.Checked = true;
-            this.radioNoEnviadas.Location = new System.Drawing.Point(383, 22);
-            this.radioNoEnviadas.Name = "radioNoEnviadas";
-            this.radioNoEnviadas.Size = new System.Drawing.Size(106, 21);
-            this.radioNoEnviadas.TabIndex = 3;
-            this.radioNoEnviadas.TabStop = true;
-            this.radioNoEnviadas.Text = "&No Enviadas";
-            this.radioNoEnviadas.UseVisualStyleBackColor = true;
-            // 
-            // radioSiEnviadas
-            // 
-            this.radioSiEnviadas.AutoSize = true;
-            this.radioSiEnviadas.Location = new System.Drawing.Point(495, 23);
-            this.radioSiEnviadas.Name = "radioSiEnviadas";
-            this.radioSiEnviadas.Size = new System.Drawing.Size(100, 21);
-            this.radioSiEnviadas.TabIndex = 4;
-            this.radioSiEnviadas.Text = "&Si Enviadas";
-            this.radioSiEnviadas.UseVisualStyleBackColor = true;
-            // 
-            // radioTodas
-            // 
-            this.radioTodas.AutoSize = true;
-            this.radioTodas.Location = new System.Drawing.Point(601, 21);
-            this.radioTodas.Name = "radioTodas";
-            this.radioTodas.Size = new System.Drawing.Size(66, 21);
-            this.radioTodas.TabIndex = 5;
-            this.radioTodas.Text = "&Todas";
-            this.radioTodas.UseVisualStyleBackColor = true;
-            // 
-            // lblFechaIFinal
-            // 
-            this.lblFechaIFinal.AutoSize = true;
-            this.lblFechaIFinal.Location = new System.Drawing.Point(197, 23);
-            this.lblFechaIFinal.Name = "lblFechaIFinal";
-            this.lblFechaIFinal.Size = new System.Drawing.Size(85, 17);
-            this.lblFechaIFinal.TabIndex = 6;
-            this.lblFechaIFinal.Text = "Fecha Final:";
-            // 
-            // txtFechaInicial
-            // 
-            this.txtFechaInicial.CustomFormat = "dd-MM-yyyy";
-            this.txtFechaInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtFechaInicial.Location = new System.Drawing.Point(102, 20);
-            this.txtFechaInicial.Name = "txtFechaInicial";
-            this.txtFechaInicial.Size = new System.Drawing.Size(89, 23);
-            this.txtFechaInicial.TabIndex = 1;
-            this.txtFechaInicial.Value = new System.DateTime(2018, 3, 31, 13, 7, 2, 0);
             // 
             // groupBoxAcciones
             // 
@@ -202,17 +202,6 @@
             this.groupBoxAcciones.TabStop = false;
             this.groupBoxAcciones.Text = "Acciones";
             // 
-            // cmdEnviar
-            // 
-            this.cmdEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdEnviar.Location = new System.Drawing.Point(286, 9);
-            this.cmdEnviar.Name = "cmdEnviar";
-            this.cmdEnviar.Size = new System.Drawing.Size(75, 23);
-            this.cmdEnviar.TabIndex = 7;
-            this.cmdEnviar.Text = "&Enviar";
-            this.cmdEnviar.UseVisualStyleBackColor = true;
-            this.cmdEnviar.Click += new System.EventHandler(this.cmdEnviar_Click);
-            // 
             // cmdVerificar
             // 
             this.cmdVerificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -225,20 +214,43 @@
             this.cmdVerificar.UseVisualStyleBackColor = true;
             this.cmdVerificar.Click += new System.EventHandler(this.cmdVerificar_Click);
             // 
-            // dateTimePicker1
+            // cmdEnviar
             // 
-            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(288, 22);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(89, 23);
-            this.dateTimePicker1.TabIndex = 2;
+            this.cmdEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdEnviar.Location = new System.Drawing.Point(286, 9);
+            this.cmdEnviar.Name = "cmdEnviar";
+            this.cmdEnviar.Size = new System.Drawing.Size(75, 23);
+            this.cmdEnviar.TabIndex = 7;
+            this.cmdEnviar.Text = "&Enviar";
+            this.cmdEnviar.UseVisualStyleBackColor = true;
+            this.cmdEnviar.Click += new System.EventHandler(this.cmdEnviar_Click);
+            // 
+            // lblEncontrados
+            // 
+            this.lblEncontrados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblEncontrados.AutoSize = true;
+            this.lblEncontrados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEncontrados.Location = new System.Drawing.Point(12, 536);
+            this.lblEncontrados.Name = "lblEncontrados";
+            this.lblEncontrados.Size = new System.Drawing.Size(20, 18);
+            this.lblEncontrados.TabIndex = 5;
+            this.lblEncontrados.Text = "...";
+            // 
+            // txtFechaInicial
+            // 
+            this.txtFechaInicial.CustomFormat = "dd-MM-yyyy";
+            this.txtFechaInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtFechaInicial.Location = new System.Drawing.Point(102, 21);
+            this.txtFechaInicial.Name = "txtFechaInicial";
+            this.txtFechaInicial.Size = new System.Drawing.Size(89, 23);
+            this.txtFechaInicial.TabIndex = 1;
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblEncontrados);
             this.Controls.Add(this.groupBoxAcciones);
             this.Controls.Add(this.dataGridViewReporte);
             this.Controls.Add(this.groupBoxFechas);
@@ -271,10 +283,11 @@
         private System.Windows.Forms.RadioButton radioSiEnviadas;
         private System.Windows.Forms.RadioButton radioNoEnviadas;
         private System.Windows.Forms.Label lblFechaIFinal;
-        private System.Windows.Forms.DateTimePicker txtFechaInicial;
         private System.Windows.Forms.GroupBox groupBoxAcciones;
         private System.Windows.Forms.Button cmdVerificar;
         private System.Windows.Forms.Button cmdEnviar;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker txtFechaFinal;
+        private System.Windows.Forms.Label lblEncontrados;
+        private System.Windows.Forms.DateTimePicker txtFechaInicial;
     }
 }

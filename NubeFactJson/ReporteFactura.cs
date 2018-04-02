@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using ConsoleTables;
 
 namespace NubeFactJson
 {
@@ -10,82 +9,26 @@ namespace NubeFactJson
         public const string NO_ENVIADO = "False";
         public const string ENVIADO = "True"; 
         public const string TODOS = "Todos";
-        public String fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
-        public void reporte(String estado) {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
-            if (fecha == null) {
-                Console.WriteLine("La fecha debe contener un valor");
-                return;
-            }
-            try
-            {
-                conSqlServer.Open();
-                SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
-                                                   "where fecha = @fecha " +
-                                                   "and (estado = @estado or 'Todos' = @estado) " +
-                                                   "order by serie, numero asc",
-                                                   conSqlServer);
-                
-                sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
-                sqlCmd.Parameters.AddWithValue("@estado", estado);
-
-                SqlDataReader sqlRead = sqlCmd.ExecuteReader();
-
-                var table = new ConsoleTable("Comprobante", 
-                                             "Serie", 
-                                             "#", 
-                                             //"Documento", 
-                                             //"Denominación",
-                                             "Subtotal",
-                                             "IGV",
-                                             "Total",
-                                             "Estado", 
-                                             "Observación");
-
-                while (sqlRead.Read())
-                {
-                    table.AddRow(sqlRead["tipo"], 
-                                 sqlRead["serie"],
-                                 sqlRead["numero"],
-                                 //sqlRead["numero_documento"],
-                                 //sqlRead["denominacion"],
-                                 sqlRead["total_gravada"],
-                                 sqlRead["total_igv"],
-                                 sqlRead["total"],
-                                 sqlRead["estado"],
-                                 sqlRead["observacion"]);
-                }
-
-                table.Write();
-
-                sqlRead.Close();
-                conSqlServer.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
-            }
-        }
-
-        public DataTable ReporteWinForms(String estado) {
+        public DataTable Reporte(String estado) {
             var conSqlServer = new Connection().initSqlServer();
             var dtReporte = new DataTable("Reporte");
 
-            if (fecha == null) {
-                //return "La fecha debe contener un valor";
+            if (Fecha == null) {
+                Console.WriteLine("La fecha debe contener un valor");
                 return null;
             }
             try
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
-                                                   "where fecha = @fecha " +
+                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
                                                    "and (estado = @estado or 'Todos' = @estado) " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
                 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
+                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
                 sqlCmd.Parameters.AddWithValue("@estado", estado);
 
                 using (SqlDataReader sqlRead = sqlCmd.ExecuteReader())
@@ -95,13 +38,13 @@ namespace NubeFactJson
                 }
                 
                 conSqlServer.Close();
+                return dtReporte;
             }
             catch (Exception ex)
             {
-                //return "Error en el reporte de  facturas" + ex.ToString();
+                Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
                 return null;
-            }
-            return dtReporte;
+            }            
         }
     }
 }

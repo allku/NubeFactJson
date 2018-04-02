@@ -5,11 +5,11 @@ namespace NubeFactJson
 {
     public class NubeFact
     {
-        public String fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
-        public string enviar() {
+        public string Enviar() {
             var conSqlServer = new Connection().initSqlServer();
-            if (fecha == null)
+            if (Fecha == null)
             {
                 return "La fecha debe contener un valor";
             }
@@ -17,12 +17,12 @@ namespace NubeFactJson
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
-                                                   "where fecha = @fecha " +
+                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
                                                    "and estado = 'False' " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
+                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
 
                 SqlDataReader sqlRead = sqlCmd.ExecuteReader();
 
@@ -50,9 +50,9 @@ namespace NubeFactJson
             return "";
         }
 
-        public string verificar() {
+        public string Verificar() {
             var conSqlServer = new Connection().initSqlServer();
-            if (fecha == null)
+            if (Fecha == null)
             {
                 return "La fecha debe contener un valor";
             }
@@ -60,12 +60,12 @@ namespace NubeFactJson
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
-                                                   "where fecha = @fecha " +
+                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
                                                    "and estado = @estado " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.fecha);
+                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
                 sqlCmd.Parameters.AddWithValue("@estado", ReporteFactura.NO_ENVIADO);
 
                 SqlDataReader sqlRead = sqlCmd.ExecuteReader();
