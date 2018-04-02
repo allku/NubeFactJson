@@ -9,26 +9,34 @@ namespace NubeFactJson
         public const string NO_ENVIADO = "False";
         public const string ENVIADO = "True"; 
         public const string TODOS = "Todos";
-        public DateTime Fecha { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
 
         public DataTable Reporte(String estado) {
             var conSqlServer = new Connection().initSqlServer();
             var dtReporte = new DataTable("Reporte");
 
-            if (Fecha == null) {
-                Console.WriteLine("La fecha debe contener un valor");
+            if (FechaInicio == null) {
+                Console.WriteLine("La fecha inicial debe contener un valor");
+                return null;
+            }
+            if (FechaFin == null)
+            {
+                Console.WriteLine("La fecha final debe contener un valor");
                 return null;
             }
             try
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select * from v_peru_facturas_reporte " +
-                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
+                                                   "where cast(fecha as Date) " +
+                                                   "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
                                                    "and (estado = @estado or 'Todos' = @estado) " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
                 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
+                sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);
+                sqlCmd.Parameters.AddWithValue("@fechaFin", this.FechaFin);
                 sqlCmd.Parameters.AddWithValue("@estado", estado);
 
                 using (SqlDataReader sqlRead = sqlCmd.ExecuteReader())

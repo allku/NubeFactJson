@@ -23,40 +23,45 @@ namespace NubeFactJson
             Cursor.Current = Cursors.WaitCursor;
             if (radioTodas.Checked)
             {
-                ReporteTodas(txtFechaInicial.Value);
+                ReporteTodos(txtFechaInicial.Value, txtFechaFinal.Value);
             }
             else if (radioNoEnviadas.Checked)
             {
-                ReporteNoEnviadas(txtFechaInicial.Value);
+                ReporteNoEnviadas(txtFechaInicial.Value, txtFechaFinal.Value);
             }
             else if (radioSiEnviadas.Checked)
             {
-                ReporteEnviadas(txtFechaInicial.Value);
+                ReporteEnviadas(txtFechaInicial.Value, txtFechaFinal.Value);
             }
             Cursor.Current = Cursors.Default;
             lblEncontrados.Text = "Encontrados: " + (dataGridViewReporte.RowCount - 1);
         }
 
-        private void ReporteTodas(DateTime fecha)
+        private void ReporteTodos(DateTime fechaInicio, DateTime fechaFin)
         {
-            var reporteFactura = new ReporteFactura();
-            reporteFactura.Fecha = fecha;
+            var reporteFactura = new ReporteFactura
+            {
+                FechaInicio = fechaInicio,
+                FechaFin = fechaFin
+            };
             var dataTable = reporteFactura.Reporte(ReporteFactura.TODOS);
             dataGridViewReporte.DataSource = dataTable;
         }
 
-        private void ReporteNoEnviadas(DateTime fecha)
+        private void ReporteNoEnviadas(DateTime fechaInicio, DateTime fechaFin)
         {
             var reporteFactura = new ReporteFactura();
-            reporteFactura.Fecha = fecha;
+            reporteFactura.FechaInicio = fechaInicio;
+            reporteFactura.FechaFin = fechaFin;
             var dataTable = reporteFactura.Reporte(ReporteFactura.NO_ENVIADO);
             dataGridViewReporte.DataSource = dataTable;
         }
 
-        private void ReporteEnviadas(DateTime fecha)
+        private void ReporteEnviadas(DateTime fechaInicio, DateTime fechaFin)
         {
             var reporteFactura = new ReporteFactura();
-            reporteFactura.Fecha = fecha;
+            reporteFactura.FechaInicio = fechaInicio;
+            reporteFactura.FechaFin = fechaFin;
             var dataTable = reporteFactura.Reporte(ReporteFactura.ENVIADO);
             dataGridViewReporte.DataSource = dataTable;
         }
@@ -81,10 +86,13 @@ namespace NubeFactJson
             }
         }
 
-        void EnviarNubeFact(DateTime fecha)
+        void EnviarNubeFact(DateTime fechaInicio, DateTime fechaFin)
         {
-            var nubeFact = new NubeFact();
-            nubeFact.Fecha = fecha;
+            var nubeFact = new NubeFact
+            {
+                FechaInicio = fechaInicio,
+                FechaFin = fechaFin
+            };
             string mensaje = nubeFact.Enviar();
             if (!mensaje.Equals(""))
             {
@@ -92,10 +100,13 @@ namespace NubeFactJson
             }
         }
 
-        void VerificarNubeFact(DateTime fecha)
+        void VerificarNubeFact(DateTime fechaInicio, DateTime fechaFin)
         {
-            var nubeFact = new NubeFact();
-            nubeFact.Fecha = fecha;
+            var nubeFact = new NubeFact
+            {
+                FechaInicio = fechaInicio,
+                FechaFin = fechaFin
+            };
             string mensaje = nubeFact.Verificar();
             if (!mensaje.Equals(""))
             {
@@ -111,14 +122,14 @@ namespace NubeFactJson
         private void cmdEnviar_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            EnviarNubeFact(txtFechaInicial.Value);
+            EnviarNubeFact(txtFechaInicial.Value, txtFechaFinal.Value);
             Cursor.Current = Cursors.Default;
         }
 
         private void cmdVerificar_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            VerificarNubeFact(txtFechaInicial.Value);
+            VerificarNubeFact(txtFechaInicial.Value, txtFechaFinal.Value);
             Cursor.Current = Cursors.Default;
         }
     }

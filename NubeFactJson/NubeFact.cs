@@ -5,24 +5,30 @@ namespace NubeFactJson
 {
     public class NubeFact
     {
-        public DateTime Fecha { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
 
         public string Enviar() {
             var conSqlServer = new Connection().initSqlServer();
-            if (Fecha == null)
+            if (FechaInicio == null)
             {
-                return "La fecha debe contener un valor";
+                return "La fecha inicial debe contener un valor";
+            }
+            if (FechaFin == null)
+            {
+                return "La fecha final debe contener un valor";
             }
             try
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
-                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
-                                                   "and estado = 'False' " +
+                                                   "where cast(fecha as Date) " +
+                                                   "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
+                sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);
+                sqlCmd.Parameters.AddWithValue("@fechaFin", this.FechaFin);
 
                 SqlDataReader sqlRead = sqlCmd.ExecuteReader();
 
@@ -45,14 +51,14 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
-                return "Error al enviar las facturas para enviar " + ex.ToString();
+                return "Error al enviar las facturas " + ex.ToString();
             }
             return "";
         }
 
         public string Verificar() {
             var conSqlServer = new Connection().initSqlServer();
-            if (Fecha == null)
+            if (FechaInicio == null)
             {
                 return "La fecha debe contener un valor";
             }
@@ -60,12 +66,14 @@ namespace NubeFactJson
             {
                 conSqlServer.Open();
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
-                                                   "where cast(fecha as Date) = cast(@fecha as Date) " +
+                                                   "where cast(fecha as Date) " +
+                                                   "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
                                                    "and estado = @estado " +
                                                    "order by serie, numero asc",
                                                    conSqlServer);
 
-                sqlCmd.Parameters.AddWithValue("@fecha", this.Fecha);
+                sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);
+                sqlCmd.Parameters.AddWithValue("@fechaFin", this.FechaFin);
                 sqlCmd.Parameters.AddWithValue("@estado", ReporteFactura.NO_ENVIADO);
 
                 SqlDataReader sqlRead = sqlCmd.ExecuteReader();
@@ -88,7 +96,7 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
-                return "Error al listar las facturas para verificar" + ex.ToString();
+                return "Error al verificar las facturas " + ex.ToString();
             }        
             return "";
         }
