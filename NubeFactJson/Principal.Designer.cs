@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.groupBoxFechas = new System.Windows.Forms.GroupBox();
+            this.txtFechaInicial = new System.Windows.Forms.DateTimePicker();
             this.txtFechaFinal = new System.Windows.Forms.DateTimePicker();
             this.lblFechaIFinal = new System.Windows.Forms.Label();
             this.radioTodas = new System.Windows.Forms.RadioButton();
@@ -43,10 +44,10 @@
             this.probarConexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxAcciones = new System.Windows.Forms.GroupBox();
+            this.cmdVer = new System.Windows.Forms.Button();
             this.cmdVerificar = new System.Windows.Forms.Button();
             this.cmdEnviar = new System.Windows.Forms.Button();
             this.lblEncontrados = new System.Windows.Forms.Label();
-            this.txtFechaInicial = new System.Windows.Forms.DateTimePicker();
             this.groupBoxFechas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -72,6 +73,15 @@
             this.groupBoxFechas.TabIndex = 1;
             this.groupBoxFechas.TabStop = false;
             this.groupBoxFechas.Text = "Rango de Fechas";
+            // 
+            // txtFechaInicial
+            // 
+            this.txtFechaInicial.CustomFormat = "dd-MM-yyyy";
+            this.txtFechaInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtFechaInicial.Location = new System.Drawing.Point(102, 21);
+            this.txtFechaInicial.Name = "txtFechaInicial";
+            this.txtFechaInicial.Size = new System.Drawing.Size(89, 23);
+            this.txtFechaInicial.TabIndex = 1;
             // 
             // txtFechaFinal
             // 
@@ -192,23 +202,35 @@
             // 
             this.groupBoxAcciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxAcciones.Controls.Add(this.cmdVer);
             this.groupBoxAcciones.Controls.Add(this.cmdVerificar);
             this.groupBoxAcciones.Controls.Add(this.cmdEnviar);
             this.groupBoxAcciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAcciones.Location = new System.Drawing.Point(12, 97);
+            this.groupBoxAcciones.Location = new System.Drawing.Point(12, 91);
             this.groupBoxAcciones.Name = "groupBoxAcciones";
-            this.groupBoxAcciones.Size = new System.Drawing.Size(760, 38);
+            this.groupBoxAcciones.Size = new System.Drawing.Size(760, 44);
             this.groupBoxAcciones.TabIndex = 4;
             this.groupBoxAcciones.TabStop = false;
             this.groupBoxAcciones.Text = "Acciones";
             // 
+            // cmdVer
+            // 
+            this.cmdVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdVer.Location = new System.Drawing.Point(445, 15);
+            this.cmdVer.Name = "cmdVer";
+            this.cmdVer.Size = new System.Drawing.Size(95, 23);
+            this.cmdVer.TabIndex = 9;
+            this.cmdVer.Text = "Ver";
+            this.cmdVer.UseVisualStyleBackColor = true;
+            this.cmdVer.Click += new System.EventHandler(this.cmdVer_Click);
+            // 
             // cmdVerificar
             // 
-            this.cmdVerificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdVerificar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmdVerificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdVerificar.Location = new System.Drawing.Point(402, 9);
+            this.cmdVerificar.Location = new System.Drawing.Point(325, 15);
             this.cmdVerificar.Name = "cmdVerificar";
-            this.cmdVerificar.Size = new System.Drawing.Size(75, 23);
+            this.cmdVerificar.Size = new System.Drawing.Size(95, 23);
             this.cmdVerificar.TabIndex = 8;
             this.cmdVerificar.Text = "&Verificar";
             this.cmdVerificar.UseVisualStyleBackColor = true;
@@ -217,9 +239,9 @@
             // cmdEnviar
             // 
             this.cmdEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdEnviar.Location = new System.Drawing.Point(286, 9);
+            this.cmdEnviar.Location = new System.Drawing.Point(207, 15);
             this.cmdEnviar.Name = "cmdEnviar";
-            this.cmdEnviar.Size = new System.Drawing.Size(75, 23);
+            this.cmdEnviar.Size = new System.Drawing.Size(95, 23);
             this.cmdEnviar.TabIndex = 7;
             this.cmdEnviar.Text = "&Enviar";
             this.cmdEnviar.UseVisualStyleBackColor = true;
@@ -235,15 +257,6 @@
             this.lblEncontrados.Size = new System.Drawing.Size(20, 18);
             this.lblEncontrados.TabIndex = 5;
             this.lblEncontrados.Text = "...";
-            // 
-            // txtFechaInicial
-            // 
-            this.txtFechaInicial.CustomFormat = "dd-MM-yyyy";
-            this.txtFechaInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtFechaInicial.Location = new System.Drawing.Point(102, 21);
-            this.txtFechaInicial.Name = "txtFechaInicial";
-            this.txtFechaInicial.Size = new System.Drawing.Size(89, 23);
-            this.txtFechaInicial.TabIndex = 1;
             // 
             // Principal
             // 
@@ -289,5 +302,6 @@
         private System.Windows.Forms.DateTimePicker txtFechaFinal;
         private System.Windows.Forms.Label lblEncontrados;
         private System.Windows.Forms.DateTimePicker txtFechaInicial;
+        private System.Windows.Forms.Button cmdVer;
     }
 }

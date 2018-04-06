@@ -11,18 +11,19 @@ namespace NubeFactJson
         public const string TODOS = "Todos";
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
+        public String Error { get; set; }
 
         public DataTable Reporte(String estado) {
             var conSqlServer = new Connection().initSqlServer();
             var dtReporte = new DataTable("Reporte");
 
             if (FechaInicio == null) {
-                Console.WriteLine("La fecha inicial debe contener un valor");
+                Error = "La fecha inicial debe contener un valor";
                 return null;
             }
             if (FechaFin == null)
             {
-                Console.WriteLine("La fecha final debe contener un valor");
+                Error = "La fecha final debe contener un valor";
                 return null;
             }
             try
@@ -50,7 +51,7 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en el reporte de  facturas" + ex.ToString());
+                Error = "Error en el reporte de  facturas " + ex.ToString();
                 return null;
             }            
         }

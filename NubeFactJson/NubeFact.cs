@@ -48,17 +48,21 @@ namespace NubeFactJson
 
                 sqlRead.Close();
                 conSqlServer.Close();
+                return "";
             }
             catch (Exception ex)
             {
                 return "Error al enviar las facturas " + ex.ToString();
-            }
-            return "";
+            }            
         }
 
         public string Verificar() {
             var conSqlServer = new Connection().initSqlServer();
             if (FechaInicio == null)
+            {
+                return "La fecha debe contener un valor";
+            }
+            if (FechaFin == null)
             {
                 return "La fecha debe contener un valor";
             }
@@ -93,12 +97,12 @@ namespace NubeFactJson
 
                 sqlRead.Close();
                 conSqlServer.Close();
+                return "";
             }
             catch (Exception ex)
             {
                 return "Error al verificar las facturas " + ex.ToString();
             }        
-            return "";
         }
     }
 }

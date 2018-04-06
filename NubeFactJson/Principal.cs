@@ -19,6 +19,11 @@ namespace NubeFactJson
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
+            Consultar();
+        }
+
+        void Consultar()
+        {
             lblEncontrados.Text = "Buscando ...";
             Cursor.Current = Cursors.WaitCursor;
             if (radioTodas.Checked)
@@ -45,7 +50,14 @@ namespace NubeFactJson
                 FechaFin = fechaFin
             };
             var dataTable = reporteFactura.Reporte(ReporteFactura.TODOS);
-            dataGridViewReporte.DataSource = dataTable;
+            if (dataTable == null)
+            {
+                MessageBox.Show(reporteFactura.Error);
+            }
+            else
+            {
+                dataGridViewReporte.DataSource = dataTable;
+            }            
         }
 
         private void ReporteNoEnviadas(DateTime fechaInicio, DateTime fechaFin)
@@ -54,7 +66,14 @@ namespace NubeFactJson
             reporteFactura.FechaInicio = fechaInicio;
             reporteFactura.FechaFin = fechaFin;
             var dataTable = reporteFactura.Reporte(ReporteFactura.NO_ENVIADO);
-            dataGridViewReporte.DataSource = dataTable;
+            if (dataTable == null)
+            {
+                MessageBox.Show(reporteFactura.Error);
+            }
+            else
+            {
+                dataGridViewReporte.DataSource = dataTable;
+            }
         }
 
         private void ReporteEnviadas(DateTime fechaInicio, DateTime fechaFin)
@@ -63,7 +82,14 @@ namespace NubeFactJson
             reporteFactura.FechaInicio = fechaInicio;
             reporteFactura.FechaFin = fechaFin;
             var dataTable = reporteFactura.Reporte(ReporteFactura.ENVIADO);
-            dataGridViewReporte.DataSource = dataTable;
+            if (dataTable == null)
+            {
+                MessageBox.Show(reporteFactura.Error);
+            }
+            else
+            {
+                dataGridViewReporte.DataSource = dataTable;
+            }
         }
 
         private void probarConexiónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,7 +122,7 @@ namespace NubeFactJson
             string mensaje = nubeFact.Enviar();
             if (!mensaje.Equals(""))
             {
-                Console.WriteLine(mensaje);
+                MessageBox.Show(mensaje);
             }
         }
 
@@ -110,7 +136,7 @@ namespace NubeFactJson
             string mensaje = nubeFact.Verificar();
             if (!mensaje.Equals(""))
             {
-                Console.WriteLine(mensaje);
+                MessageBox.Show(mensaje);
             }
         }
 
@@ -124,6 +150,7 @@ namespace NubeFactJson
             Cursor.Current = Cursors.WaitCursor;
             EnviarNubeFact(txtFechaInicial.Value, txtFechaFinal.Value);
             Cursor.Current = Cursors.Default;
+            Consultar();
         }
 
         private void cmdVerificar_Click(object sender, EventArgs e)
@@ -131,6 +158,21 @@ namespace NubeFactJson
             Cursor.Current = Cursors.WaitCursor;
             VerificarNubeFact(txtFechaInicial.Value, txtFechaFinal.Value);
             Cursor.Current = Cursors.Default;
+            Consultar();
+        }
+
+        private void cmdVer_Click(object sender, EventArgs e)
+        {
+            int count = dataGridViewReporte.RowCount;
+            Console.WriteLine("Registros: " + count);
+            
+            if (count > 1)
+            {
+                int columnIndex = dataGridViewReporte.CurrentCell.ColumnIndex;
+                int rowIndex = dataGridViewReporte.CurrentCell.RowIndex;
+                var cell = dataGridViewReporte[columnIndex, rowIndex].Value;
+                MessageBox.Show(cell.ToString());
+            }                        
         }
     }
 }
