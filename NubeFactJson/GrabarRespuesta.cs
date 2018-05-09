@@ -19,7 +19,7 @@ namespace NubeFactJson
         }
 
         public void borrarGrabar () {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            SqlConnection conSqlServer = new Connection().InitSqlServer();
 
             if(aceptado()) {
                 return;
@@ -118,7 +118,7 @@ namespace NubeFactJson
         }
 
         Boolean aceptado() {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            SqlConnection conSqlServer = new Connection().InitSqlServer();
             int count = 0;
             try
             {

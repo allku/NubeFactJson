@@ -95,8 +95,8 @@ namespace NubeFactJson
         private void probarConexiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var c = new Connection();
-            c.initSqlServer();
-            if (c.probarSqlServerConnection())
+            c.InitSqlServer();
+            if (c.ProbarSqlServerConnection())
             {
                 MessageBox.Show("Conexión de base de datos exitosa",
                     "Conexión",

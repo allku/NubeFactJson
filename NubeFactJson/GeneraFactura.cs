@@ -38,7 +38,7 @@ namespace NubeFactJson
         }
 
         void loadFactura() {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            SqlConnection conSqlServer = new Connection().InitSqlServer();
             try
             {
                 conSqlServer.Open();
@@ -86,7 +86,7 @@ namespace NubeFactJson
             }
         }
         void loadFacturaDetalle() {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            SqlConnection conSqlServer = new Connection().InitSqlServer();
 
             try
             {
@@ -150,7 +150,7 @@ namespace NubeFactJson
 
         void loadFacturaVerificar()
         {
-            SqlConnection conSqlServer = new Connection().initSqlServer();
+            SqlConnection conSqlServer = new Connection().InitSqlServer();
             try
             {
                 conSqlServer.Open();

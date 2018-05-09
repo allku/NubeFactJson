@@ -14,7 +14,7 @@ namespace NubeFactJson
         public String Error { get; set; }
 
         public DataTable Reporte(String estado) {
-            var conSqlServer = new Connection().initSqlServer();
+            var conSqlServer = new Connection().InitSqlServer();
             var dtReporte = new DataTable("Reporte");
 
             if (FechaInicio == null) {
@@ -33,7 +33,7 @@ namespace NubeFactJson
                                                    "where cast(fecha as Date) " +
                                                    "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
                                                    "and (estado = @estado or 'Todos' = @estado) " +
-                                                   "order by serie, numero asc",
+                                                   "order by fecha, serie, numero asc",
                                                    conSqlServer);
                 
                 sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);

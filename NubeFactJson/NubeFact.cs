@@ -9,7 +9,7 @@ namespace NubeFactJson
         public DateTime FechaFin { get; set; }
 
         public string Enviar() {
-            var conSqlServer = new Connection().initSqlServer();
+            var conSqlServer = new Connection().InitSqlServer();
             if (FechaInicio == null)
             {
                 return "La fecha inicial debe contener un valor";
@@ -24,7 +24,7 @@ namespace NubeFactJson
                 SqlCommand sqlCmd = new SqlCommand("select tipo_comprobante, serie, numero from v_peru_facturas_reporte " +
                                                    "where cast(fecha as Date) " +
                                                    "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
-                                                   "order by serie, numero asc",
+                                                   "order by fecha, serie, numero asc",
                                                    conSqlServer);
 
                 sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);
@@ -57,7 +57,7 @@ namespace NubeFactJson
         }
 
         public string Verificar() {
-            var conSqlServer = new Connection().initSqlServer();
+            var conSqlServer = new Connection().InitSqlServer();
             if (FechaInicio == null)
             {
                 return "La fecha debe contener un valor";
@@ -73,7 +73,7 @@ namespace NubeFactJson
                                                    "where cast(fecha as Date) " +
                                                    "between cast(@fechaInicio as Date) and cast(@fechaFin as Date) " +
                                                    "and estado = @estado " +
-                                                   "order by serie, numero asc",
+                                                   "order by fecha, serie, numero asc",
                                                    conSqlServer);
 
                 sqlCmd.Parameters.AddWithValue("@fechaInicio", this.FechaInicio);

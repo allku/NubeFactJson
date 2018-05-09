@@ -5,7 +5,7 @@ namespace NubeFactJson
 {
     public class Connection
     {       
-        public SqlConnection initSqlServer()
+        public SqlConnection InitSqlServer()
         {
             SqlConnection conSqlServer = new SqlConnection(
                 System.Configuration.ConfigurationManager.ConnectionStrings[
@@ -14,9 +14,9 @@ namespace NubeFactJson
             return conSqlServer;
         }
 
-        public Boolean probarSqlServerConnection()
+        public Boolean ProbarSqlServerConnection()
         {
-            SqlConnection conSqlServer = new Connection().initSqlServer();            
+            SqlConnection conSqlServer = new Connection().InitSqlServer();            
             try
             {
                 conSqlServer.Open();                
@@ -25,6 +25,7 @@ namespace NubeFactJson
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error: {0}", ex.Message);
                 return false;
             }
         }

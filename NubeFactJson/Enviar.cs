@@ -20,8 +20,6 @@
 /// # IMPORTANTE: Enviaremos el XML generado a la SUNAT y lo almacenaremos junto con el PDF, XML y CDR en la NUBE para que tu cliente pueda consultarlo en cualquier momento, si así lo desea.
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-/// USAR LO SIGUIENTE
-
 using System;
 using System.Collections.Generic;
 using System.IO;
