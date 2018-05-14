@@ -48,6 +48,7 @@
             this.cmdVerificar = new System.Windows.Forms.Button();
             this.cmdEnviar = new System.Windows.Forms.Button();
             this.lblEncontrados = new System.Windows.Forms.Label();
+            this.cmdEnviarUna = new System.Windows.Forms.Button();
             this.groupBoxFechas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -202,6 +203,7 @@
             // 
             this.groupBoxAcciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxAcciones.Controls.Add(this.cmdEnviarUna);
             this.groupBoxAcciones.Controls.Add(this.cmdVer);
             this.groupBoxAcciones.Controls.Add(this.cmdVerificar);
             this.groupBoxAcciones.Controls.Add(this.cmdEnviar);
@@ -216,7 +218,7 @@
             // cmdVer
             // 
             this.cmdVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdVer.Location = new System.Drawing.Point(445, 15);
+            this.cmdVer.Location = new System.Drawing.Point(539, 15);
             this.cmdVer.Name = "cmdVer";
             this.cmdVer.Size = new System.Drawing.Size(95, 23);
             this.cmdVer.TabIndex = 9;
@@ -228,7 +230,7 @@
             // 
             this.cmdVerificar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmdVerificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdVerificar.Location = new System.Drawing.Point(325, 15);
+            this.cmdVerificar.Location = new System.Drawing.Point(404, 15);
             this.cmdVerificar.Name = "cmdVerificar";
             this.cmdVerificar.Size = new System.Drawing.Size(95, 23);
             this.cmdVerificar.TabIndex = 8;
@@ -239,7 +241,7 @@
             // cmdEnviar
             // 
             this.cmdEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdEnviar.Location = new System.Drawing.Point(207, 15);
+            this.cmdEnviar.Location = new System.Drawing.Point(126, 15);
             this.cmdEnviar.Name = "cmdEnviar";
             this.cmdEnviar.Size = new System.Drawing.Size(95, 23);
             this.cmdEnviar.TabIndex = 7;
@@ -257,6 +259,17 @@
             this.lblEncontrados.Size = new System.Drawing.Size(20, 18);
             this.lblEncontrados.TabIndex = 5;
             this.lblEncontrados.Text = "...";
+            // 
+            // cmdEnviarUna
+            // 
+            this.cmdEnviarUna.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmdEnviarUna.Location = new System.Drawing.Point(261, 15);
+            this.cmdEnviarUna.Name = "cmdEnviarUna";
+            this.cmdEnviarUna.Size = new System.Drawing.Size(95, 23);
+            this.cmdEnviarUna.TabIndex = 10;
+            this.cmdEnviarUna.Text = "Enviar Una";
+            this.cmdEnviarUna.UseVisualStyleBackColor = true;
+            this.cmdEnviarUna.Click += new System.EventHandler(this.cmdEnviarUna_Click);
             // 
             // Principal
             // 
@@ -303,5 +316,6 @@
         private System.Windows.Forms.Label lblEncontrados;
         private System.Windows.Forms.DateTimePicker txtFechaInicial;
         private System.Windows.Forms.Button cmdVer;
+        private System.Windows.Forms.Button cmdEnviarUna;
     }
 }

@@ -174,5 +174,34 @@ namespace NubeFactJson
                 MessageBox.Show(cell.ToString());
             }                        
         }
+
+        private void cmdEnviarUna_Click(object sender, EventArgs e)
+        {
+            int count = dataGridViewReporte.RowCount;
+
+            if (count > 1)
+            {                
+                int rowIndex = dataGridViewReporte.CurrentCell.RowIndex;
+                var tipoComprobante = dataGridViewReporte["tipo_comprobante", rowIndex].Value;
+                var serie = dataGridViewReporte["serie", rowIndex].Value;
+                var numero = dataGridViewReporte["numero", rowIndex].Value;
+                Console.WriteLine("Comprobante: {0} - {1} - {2}", 
+                    tipoComprobante.ToString(),
+                    serie.ToString(), 
+                    numero.ToString()
+                    );
+                Cursor.Current = Cursors.WaitCursor;
+                var enviarFactura = new Enviar();
+                var generaFactura = new GeneraFactura(
+                    tipoComprobante.ToString(), 
+                    serie.ToString(), 
+                    numero.ToString()
+                    );
+                var factura = generaFactura.generaEnvio();
+                enviarFactura.factura(factura);
+                Cursor.Current = Cursors.Default;
+                Consultar();
+            }
+        }
     }
 }

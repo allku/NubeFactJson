@@ -60,7 +60,7 @@ namespace NubeFactJson
                     this.invoice.serie = sqlRead["serie"].ToString();
                     this.invoice.numero = int.Parse(sqlRead["numero"].ToString());
                     this.invoice.sunat_transaction = 1;
-                    this.invoice.cliente_tipo_de_documento = int.Parse(sqlRead["tipo_documento_cliente"].ToString());;
+                    this.invoice.cliente_tipo_de_documento = int.Parse(sqlRead["tipo_documento_cliente"].ToString());
                     this.invoice.cliente_numero_de_documento = sqlRead["numero_documento"].ToString();
                     this.invoice.cliente_denominacion = sqlRead["denominacion"].ToString();
                     this.invoice.cliente_direccion = sqlRead["direccion"].ToString();
@@ -69,6 +69,7 @@ namespace NubeFactJson
                     this.invoice.fecha_de_emision = sqlRead.GetDateTime(colIndex);
                     this.invoice.moneda = 1;
                     this.invoice.porcentaje_de_igv = 18;
+                    this.invoice.total_descuento = double.Parse(sqlRead["descuento"].ToString());
                     this.invoice.total_gravada = sqlRead["total_gravada"].ToString();
                     this.invoice.total_igv = double.Parse(sqlRead["total_igv"].ToString());
                     this.invoice.total = double.Parse(sqlRead["total"].ToString());
@@ -117,7 +118,7 @@ namespace NubeFactJson
                         valor_unitario = double.Parse(sqlRead["valor_unitario"].ToString()),   // valor sin iva 
                         //precio_unitario = 590,  //  valor_unitario+(valor_unitario(18%))
                         precio_unitario = double.Parse(sqlRead["precio_unitario"].ToString()),
-                        descuento = "",
+                        descuento = double.Parse(sqlRead["descuento"].ToString()),
                         //subtotal = 500,/// (valor_unitario- descuento)*cantidad
                         subtotal = double.Parse(sqlRead["subtotal"].ToString()),
                         tipo_de_igv = 1,    // es una constante IGV =1
