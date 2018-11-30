@@ -67,6 +67,7 @@ namespace NubeFactJson
                     this.invoice.cliente_email = sqlRead["email"].ToString();
                     int colIndex = sqlRead.GetOrdinal("fecha");
                     this.invoice.fecha_de_emision = sqlRead.GetDateTime(colIndex);
+                    this.invoice.fecha_de_vencimiento = sqlRead.GetDateTime(colIndex);
                     this.invoice.moneda = 1;
                     this.invoice.porcentaje_de_igv = 18;
                     this.invoice.total_descuento = double.Parse(sqlRead["descuento"].ToString());

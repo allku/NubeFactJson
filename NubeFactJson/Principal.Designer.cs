@@ -44,11 +44,12 @@
             this.probarConexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxAcciones = new System.Windows.Forms.GroupBox();
+            this.cmdEnviarUna = new System.Windows.Forms.Button();
             this.cmdVer = new System.Windows.Forms.Button();
             this.cmdVerificar = new System.Windows.Forms.Button();
             this.cmdEnviar = new System.Windows.Forms.Button();
             this.lblEncontrados = new System.Windows.Forms.Label();
-            this.cmdEnviarUna = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.groupBoxFechas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -215,6 +216,17 @@
             this.groupBoxAcciones.TabStop = false;
             this.groupBoxAcciones.Text = "Acciones";
             // 
+            // cmdEnviarUna
+            // 
+            this.cmdEnviarUna.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmdEnviarUna.Location = new System.Drawing.Point(261, 15);
+            this.cmdEnviarUna.Name = "cmdEnviarUna";
+            this.cmdEnviarUna.Size = new System.Drawing.Size(95, 23);
+            this.cmdEnviarUna.TabIndex = 10;
+            this.cmdEnviarUna.Text = "Enviar Una";
+            this.cmdEnviarUna.UseVisualStyleBackColor = true;
+            this.cmdEnviarUna.Click += new System.EventHandler(this.cmdEnviarUna_Click);
+            // 
             // cmdVer
             // 
             this.cmdVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -260,22 +272,22 @@
             this.lblEncontrados.TabIndex = 5;
             this.lblEncontrados.Text = "...";
             // 
-            // cmdEnviarUna
+            // lblVersion
             // 
-            this.cmdEnviarUna.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmdEnviarUna.Location = new System.Drawing.Point(261, 15);
-            this.cmdEnviarUna.Name = "cmdEnviarUna";
-            this.cmdEnviarUna.Size = new System.Drawing.Size(95, 23);
-            this.cmdEnviarUna.TabIndex = 10;
-            this.cmdEnviarUna.Text = "Enviar Una";
-            this.cmdEnviarUna.UseVisualStyleBackColor = true;
-            this.cmdEnviarUna.Click += new System.EventHandler(this.cmdEnviarUna_Click);
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(713, 535);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(60, 13);
+            this.lblVersion.TabIndex = 6;
+            this.lblVersion.Text = "Versión 0.9";
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblEncontrados);
             this.Controls.Add(this.groupBoxAcciones);
             this.Controls.Add(this.dataGridViewReporte);
@@ -317,5 +329,6 @@
         private System.Windows.Forms.DateTimePicker txtFechaInicial;
         private System.Windows.Forms.Button cmdVer;
         private System.Windows.Forms.Button cmdEnviarUna;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
